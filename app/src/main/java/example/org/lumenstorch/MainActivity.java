@@ -17,6 +17,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -27,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
     public boolean turnon = false;
     TextView textLIGHT_available;
     TextView textLIGHT_reading;
+    TextView pantalla;
+    SeekBar seekBar;
+    int min = 0, max = 500, current = 250;
 
 
     @Override
@@ -39,6 +43,32 @@ public class MainActivity extends AppCompatActivity {
 
         textLIGHT_available = (TextView) findViewById(R.id.LIGHT_available);
         textLIGHT_reading = (TextView) findViewById(R.id.LIGHT_reading);
+
+        seekBar = (SeekBar) findViewById(R.id.barralumens);
+        pantalla = (TextView) findViewById(R.id.muestrabarra);
+
+        seekBar.setMax(max-min);
+        seekBar.setProgress(current-min);
+
+        pantalla.setText(""+current);
+
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                current = progress + min;
+                pantalla.setText(""+current);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
 
         //Construcción del objeto sensor de luz.
 

@@ -39,13 +39,12 @@
         android:layout_height="205dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="184dp"
         android:layout_weight="2"
         android:onClick="Encender"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:srcCompat="@drawable/imgen" />
+        app:srcCompat="@drawable/imgen"
+        tools:layout_editor_absoluteY="311dp" />
 
     <TextView
         android:id="@+id/LIGHT_available"
@@ -75,21 +74,35 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seekBar" />
+        app:layout_constraintTop_toBottomOf="@+id/barralumens" />
 
     <SeekBar
-        android:id="@+id/seekBar"
+        android:id="@+id/barralumens"
         style="@style/Widget.AppCompat.SeekBar.Discrete"
         android:layout_width="259dp"
         android:layout_height="61dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="20dp"
         android:max="10"
         android:progress="3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/boton" />
+
+    <TextView
+        android:id="@+id/muestrabarra"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/boton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintVertical_bias="0.554" />
 
 
 </android.support.constraint.ConstraintLayout>
