@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         checkBox = (CheckBox)findViewById(R.id.automatic);
         seekBar.setMax(max-min);
         seekBar.setProgress(current-min);
-        pantalla.setText(""+current);
+        pantalla.setText("Aplicar a: " + current);
 
         //Barra se selección de la cantidad de luz.
 
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 current = progress + min;
-                pantalla.setText(""+current);
+                pantalla.setText("Aplicar a: "+current);
 
             }
 
