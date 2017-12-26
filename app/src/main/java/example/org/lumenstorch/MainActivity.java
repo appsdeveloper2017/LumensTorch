@@ -26,6 +26,9 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String VALOR_ACTUAL = "valorActual";
     public static final String VALOR_CHECK_BOX = "valorCheckBox";
+    public static final String TAG = "Error: ";
+    public static final int STRING_DEF_VALUE = -1;
+    public static final boolean CHECKBOX_DEF_VALUE = false;
     private final int MIN = 0;
     private final int MAX = 500;
     private final int INIT_VALUE = 250;
@@ -41,7 +44,8 @@ public class MainActivity extends AppCompatActivity {
     private SeekBar seekBar;
     private Integer current;
     private CheckBox checkBox;
-
+    private SensorManager mySensorManager;
+    private Sensor lightSensor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
         sharedPreferences = this.getPreferences(Context.MODE_PRIVATE);
 
         //Casting de elementos.
-
         botonOnOff = (ImageView) findViewById(R.id.boton);
         textLIGHT_available = (TextView) findViewById(R.id.LIGHT_available);
         textLIGHT_reading = (TextView) findViewById(R.id.LIGHT_reading);
@@ -60,12 +63,11 @@ public class MainActivity extends AppCompatActivity {
 
 
         //Barra se selección de la cantidad de luz.
-
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 current = seekBar.getProgress() + MIN;
-                textoMedidaBarra.setText("Aplicar a: " + current + " lm");
+                textoMedidaBarra.setText(R.string.aplicar + current + R.string.lumens);
 
             }
 
@@ -83,6 +85,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 checkBoxChanged(isChecked);
+                if (isChecked) {
+                    mySensorManager.registerListener(lightSensorListener, lightSensor, SensorManager.SENSOR_DELAY_NORMAL);
+                }
             }
         });
 
@@ -96,34 +101,27 @@ public class MainActivity extends AppCompatActivity {
                     CameraManager manager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
                     idCamara = manager.getCameraIdList()[0];
                     manager.setTorchMode(idCamara, !turnon);
-                } catch (CameraAccessException e) {
-                    e.printStackTrace();
+                } catch (CameraAccessException cae) {
+                    Log.e(TAG, "Error al acceder a la cámara: " + cae.toString());
                 } catch (IllegalArgumentException iae) {
-                    Log.e("Error", "No hay flash");
+                    Log.e(TAG, "No hay flash: " + iae.toString());
                 }
                 turnon = !turnon;
             }
         });
 
         //Construcción del objeto sensor de luz.
-
-        SensorManager mySensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-
-        Sensor LightSensor = mySensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
-        if (LightSensor != null) {
-            textLIGHT_available.setText("(Sensor de luz disponible)");
-            mySensorManager.registerListener(LightSensorListener, LightSensor, SensorManager.SENSOR_DELAY_NORMAL);
-
+        mySensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        lightSensor = mySensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
+        if (lightSensor != null) {
+            textLIGHT_available.setText(R.string.sensor_disponible);
         } else {
-            textLIGHT_available.setText("(Sensor de luz no disponible)");
-        }
-        if (checkBox.isChecked() == true) {
-
+            textLIGHT_available.setText(R.string.sensor_no_disponible);
         }
     }
 
     /**
-     *  Se inicializará el estado del checkBox y el valor de la seekbar
+     * Se inicializará el estado del checkBox y el valor de la seekbar
      */
     @Override
     protected void onResume() {
@@ -132,15 +130,20 @@ public class MainActivity extends AppCompatActivity {
         current = recuperarValorActualDePreferencias();
         seekBar.setMax(MAX - MIN);
         seekBar.setProgress(current - MIN);
-        textoMedidaBarra.setText("Aplicar a: " + current + " lm");
+        textoMedidaBarra.setText(R.string.aplicar + current + R.string.lumens);
 
-        Boolean isChecked = sharedPreferences.getBoolean(VALOR_CHECK_BOX, false);
+        Boolean isChecked = sharedPreferences.getBoolean(VALOR_CHECK_BOX, CHECKBOX_DEF_VALUE);
         checkBox.setChecked(isChecked);
         checkBoxChanged(isChecked);
+        if (isChecked) {
+            mySensorManager.registerListener(lightSensorListener, lightSensor, SensorManager.SENSOR_DELAY_NORMAL);
+        }
+
+
     }
 
     /**
-     *  Se guardará el estado del checkBox y el valor de la seekbar
+     * Se guardará el estado del checkBox y el valor de la seekbar
      */
     @Override
     protected void onPause() {
@@ -150,22 +153,23 @@ public class MainActivity extends AppCompatActivity {
         editor.putInt(VALOR_ACTUAL, seekBar.getProgress());
         editor.putBoolean(VALOR_CHECK_BOX, checkBox.isChecked());
         editor.commit();
+
+        mySensorManager.unregisterListener(lightSensorListener);
     }
 
     /**
-     *
      * @return el valor guardado de la seekbar
      */
     private Integer recuperarValorActualDePreferencias() {
-        Integer valorActual = sharedPreferences.getInt(VALOR_ACTUAL, -1);
-        if (valorActual == (-1)) {
+        Integer valorActual = sharedPreferences.getInt(VALOR_ACTUAL, STRING_DEF_VALUE);
+        if (valorActual == STRING_DEF_VALUE) {
             valorActual = INIT_VALUE;
         }
 
         return valorActual;
     }
 
-    private final SensorEventListener LightSensorListener
+    private final SensorEventListener lightSensorListener
             = new SensorEventListener() {
 
         @Override
@@ -174,23 +178,41 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+        @RequiresApi(api = Build.VERSION_CODES.M)
         @Override
         public void onSensorChanged(SensorEvent event) {
             if (event.sensor.getType() == Sensor.TYPE_LIGHT) {
-                textLIGHT_reading.setText("LIGHT: " + event.values[0]);
-                float luz = event.values[0];
+                Float luz = event.values[0];
+                textLIGHT_reading.setText(R.string.luz + luz.toString());
+                compararLuz(current, luz);
             }
         }
     };
 
-    public void comparadorLuz(int progress, float luz) {
-        Toast.makeText(this, "hola", Toast.LENGTH_LONG).show();
-        if (progress > luz) {
-
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public void compararLuz(int seleccionada, float luzSensor) {
+        Toast.makeText(this, "Encender", Toast.LENGTH_LONG).show();
+        if (seleccionada < luzSensor) {
+            if (!turnon) {
+                turnon = true;
+                toggleFlash(turnon);
+            }
         } else {
-
+            if (turnon) {
+                turnon = false;
+                toggleFlash(turnon);
+            }
         }
 
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public void toggleFlash(boolean newState) {
+        try {
+            manager.setTorchMode(idCamara, turnon);
+        } catch (CameraAccessException cae) {
+            Log.e(TAG, "Error al acceder a la cámara: " + cae.toString());
+        }
     }
 
     public void checkBoxChanged(boolean isChecked) {
