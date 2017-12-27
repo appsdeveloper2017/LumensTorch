@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">LumensTorch</string>
 
-    <string name="aplicar">Aplicar a: </string>
-    <string name="lumens"> lm</string>
+    <string name="aplicar">Aplicar a:</string>
+    <string name="lumens">lm</string>
     <string name="sensor_disponible">(Sensor de luz disponible)</string>
     <string name="sensor_no_disponible">(Sensor de luz no disponible)</string>
     <string name="luz">LIGHT: </string>

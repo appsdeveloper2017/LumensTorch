@@ -20,7 +20,6 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,9 +28,10 @@ public class MainActivity extends AppCompatActivity {
     public static final String TAG = "Error: ";
     public static final int STRING_DEF_VALUE = -1;
     public static final boolean CHECKBOX_DEF_VALUE = false;
+    public static final String SPACE = " ";
     private final int MIN = 0;
-    private final int MAX = 500;
-    private final int INIT_VALUE = 250;
+    private final int MAX = 250;
+    private final int INIT_VALUE = 125;
 
     private SharedPreferences sharedPreferences;
     private ImageView botonOnOff;
@@ -60,15 +60,20 @@ public class MainActivity extends AppCompatActivity {
         textoMedidaBarra = (TextView) findViewById(R.id.muestrabarra);
         checkBox = (CheckBox) findViewById(R.id.automatic);
         seekBar = (SeekBar) findViewById(R.id.barralumens);
-
+        manager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
+        try {
+            idCamara = manager.getCameraIdList()[0];
+        } catch (CameraAccessException cae) {
+            Log.e(TAG, "Error al acceder a la cámara: " + cae.toString());
+        }
 
         //Barra se selección de la cantidad de luz.
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 current = seekBar.getProgress() + MIN;
-                textoMedidaBarra.setText(R.string.aplicar + current + R.string.lumens);
-
+                textoMedidaBarra.setText(getResources().getString(R.string.aplicar)
+                        + SPACE + current + SPACE + getResources().getString(R.string.lumens));
             }
 
             @Override
@@ -84,10 +89,7 @@ public class MainActivity extends AppCompatActivity {
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                checkBoxChanged(isChecked);
-                if (isChecked) {
-                    mySensorManager.registerListener(lightSensorListener, lightSensor, SensorManager.SENSOR_DELAY_NORMAL);
-                }
+                comprobarCheckBox(isChecked);
             }
         });
 
@@ -98,8 +100,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 try {
-                    CameraManager manager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
-                    idCamara = manager.getCameraIdList()[0];
                     manager.setTorchMode(idCamara, !turnon);
                 } catch (CameraAccessException cae) {
                     Log.e(TAG, "Error al acceder a la cámara: " + cae.toString());
@@ -114,9 +114,9 @@ public class MainActivity extends AppCompatActivity {
         mySensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         lightSensor = mySensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
         if (lightSensor != null) {
-            textLIGHT_available.setText(R.string.sensor_disponible);
+            textLIGHT_available.setText(getResources().getString(R.string.sensor_disponible));
         } else {
-            textLIGHT_available.setText(R.string.sensor_no_disponible);
+            textLIGHT_available.setText(getResources().getString(R.string.sensor_no_disponible));
         }
     }
 
@@ -130,16 +130,12 @@ public class MainActivity extends AppCompatActivity {
         current = recuperarValorActualDePreferencias();
         seekBar.setMax(MAX - MIN);
         seekBar.setProgress(current - MIN);
-        textoMedidaBarra.setText(R.string.aplicar + current + R.string.lumens);
+        textoMedidaBarra.setText(getResources().getString(R.string.aplicar)
+                + SPACE + current + SPACE + getResources().getString(R.string.lumens));
 
         Boolean isChecked = sharedPreferences.getBoolean(VALOR_CHECK_BOX, CHECKBOX_DEF_VALUE);
         checkBox.setChecked(isChecked);
-        checkBoxChanged(isChecked);
-        if (isChecked) {
-            mySensorManager.registerListener(lightSensorListener, lightSensor, SensorManager.SENSOR_DELAY_NORMAL);
-        }
-
-
+        comprobarCheckBox(isChecked);
     }
 
     /**
@@ -183,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
         public void onSensorChanged(SensorEvent event) {
             if (event.sensor.getType() == Sensor.TYPE_LIGHT) {
                 Float luz = event.values[0];
-                textLIGHT_reading.setText(R.string.luz + luz.toString());
+                textLIGHT_reading.setText(getResources().getString(R.string.luz) + luz.toString());
                 compararLuz(current, luz);
             }
         }
@@ -191,8 +187,7 @@ public class MainActivity extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void compararLuz(int seleccionada, float luzSensor) {
-        Toast.makeText(this, "Encender", Toast.LENGTH_LONG).show();
-        if (seleccionada < luzSensor) {
+        if (seleccionada > luzSensor) {
             if (!turnon) {
                 turnon = true;
                 toggleFlash(turnon);
@@ -215,16 +210,26 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void checkBoxChanged(boolean isChecked) {
+    public void comprobarCheckBox(boolean isChecked) {
         if (isChecked) {
-            botonOnOff.setClickable(false);
-            seekBar.setVisibility(View.VISIBLE);
-            textoMedidaBarra.setVisibility(View.VISIBLE);
+            activarAuto();
         } else {
-            botonOnOff.setClickable(true);
-            seekBar.setVisibility(View.INVISIBLE);
-            textoMedidaBarra.setVisibility(View.INVISIBLE);
+            activarManual();
         }
+    }
+
+    public void activarManual() {
+        botonOnOff.setClickable(true);
+        seekBar.setVisibility(View.INVISIBLE);
+        textoMedidaBarra.setVisibility(View.INVISIBLE);
+        mySensorManager.unregisterListener(lightSensorListener);
+    }
+
+    public void activarAuto() {
+        botonOnOff.setClickable(false);
+        seekBar.setVisibility(View.VISIBLE);
+        textoMedidaBarra.setVisibility(View.VISIBLE);
+        mySensorManager.registerListener(lightSensorListener, lightSensor, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
 }
