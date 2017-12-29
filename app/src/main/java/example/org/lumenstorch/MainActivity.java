@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String SPACE = " ";
     private final int MIN = 0;
     private final int MAX = 250;
-    private final int INIT_VALUE = 125;
+    private final int INIT_VALUE = MAX / 2;
 
     private SharedPreferences sharedPreferences;
     private ImageView botonOnOff;
@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
     private TextView textLIGHT_reading;
     private TextView textoMedidaBarra;
     private SeekBar seekBar;
-    private Integer current;
     private CheckBox checkBox;
     private SensorManager mySensorManager;
     private Sensor lightSensor;
@@ -71,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                current = seekBar.getProgress() + MIN;
+                Integer current = seekBar.getProgress() + MIN;
                 textoMedidaBarra.setText(getResources().getString(R.string.aplicar)
                         + SPACE + current + SPACE + getResources().getString(R.string.lumens));
             }
@@ -98,14 +97,7 @@ public class MainActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.ECLAIR)
             @Override
             public void onClick(View view) {
-
-                try {
-                    manager.setTorchMode(idCamara, !turnon);
-                } catch (CameraAccessException cae) {
-                    Log.e(TAG, "Error al acceder a la cámara: " + cae.toString());
-                } catch (IllegalArgumentException iae) {
-                    Log.e(TAG, "No hay flash: " + iae.toString());
-                }
+                toggleFlash(turnon);
                 turnon = !turnon;
             }
         });
@@ -116,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
         if (lightSensor != null) {
             textLIGHT_available.setText(getResources().getString(R.string.sensor_disponible));
         } else {
+            checkBox.setVisibility(View.INVISIBLE);
             textLIGHT_available.setText(getResources().getString(R.string.sensor_no_disponible));
         }
     }
@@ -127,11 +120,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        current = recuperarValorActualDePreferencias();
+        Integer valorSeekbar = recuperarValorActualDePreferencias();
         seekBar.setMax(MAX - MIN);
-        seekBar.setProgress(current - MIN);
+        seekBar.setProgress(valorSeekbar - MIN);
         textoMedidaBarra.setText(getResources().getString(R.string.aplicar)
-                + SPACE + current + SPACE + getResources().getString(R.string.lumens));
+                + SPACE + valorSeekbar + SPACE + getResources().getString(R.string.lumens));
 
         Boolean isChecked = sharedPreferences.getBoolean(VALOR_CHECK_BOX, CHECKBOX_DEF_VALUE);
         checkBox.setChecked(isChecked);
@@ -141,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Se guardará el estado del checkBox y el valor de la seekbar
      */
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onPause() {
         super.onPause();
@@ -150,6 +144,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putBoolean(VALOR_CHECK_BOX, checkBox.isChecked());
         editor.commit();
 
+        toggleFlash(false);
         mySensorManager.unregisterListener(lightSensorListener);
     }
 
@@ -180,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
             if (event.sensor.getType() == Sensor.TYPE_LIGHT) {
                 Float luz = event.values[0];
                 textLIGHT_reading.setText(getResources().getString(R.string.luz) + luz.toString());
-                compararLuz(current, luz);
+                compararLuz(seekBar.getProgress(), luz);
             }
         }
     };
@@ -204,10 +199,13 @@ public class MainActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void toggleFlash(boolean newState) {
         try {
-            manager.setTorchMode(idCamara, turnon);
+            manager.setTorchMode(idCamara, newState);
         } catch (CameraAccessException cae) {
             Log.e(TAG, "Error al acceder a la cámara: " + cae.toString());
+        } catch (IllegalArgumentException iae) {
+            Log.e(TAG, "No hay flash: " + iae.toString());
         }
+
     }
 
     public void comprobarCheckBox(boolean isChecked) {
@@ -220,6 +218,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void activarManual() {
         botonOnOff.setClickable(true);
+        botonOnOff.setImageDrawable(getResources().getDrawable(R.drawable.imagen));
         seekBar.setVisibility(View.INVISIBLE);
         textoMedidaBarra.setVisibility(View.INVISIBLE);
         mySensorManager.unregisterListener(lightSensorListener);
@@ -227,6 +226,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void activarAuto() {
         botonOnOff.setClickable(false);
+        botonOnOff.setImageDrawable(getResources().getDrawable(R.drawable.imagen_bloqueado));
         seekBar.setVisibility(View.VISIBLE);
         textoMedidaBarra.setVisibility(View.VISIBLE);
         mySensorManager.registerListener(lightSensorListener, lightSensor, SensorManager.SENSOR_DELAY_NORMAL);
