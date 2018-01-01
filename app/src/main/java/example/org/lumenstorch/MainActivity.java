@@ -2,6 +2,7 @@ package example.org.lumenstorch;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraManager;
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private CheckBox checkBox;
     private SensorManager mySensorManager;
     private Sensor lightSensor;
+    private ImageView img_linterna_frontal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         sharedPreferences = this.getPreferences(Context.MODE_PRIVATE);
 
         //Casting de elementos.
+        img_linterna_frontal =(ImageView) findViewById(R.id.linterna_frontal);
         botonOnOff = (ImageView) findViewById(R.id.boton);
         textLIGHT_available = (TextView) findViewById(R.id.LIGHT_available);
         textLIGHT_reading = (TextView) findViewById(R.id.LIGHT_reading);
@@ -99,6 +102,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 toggleFlash(turnon);
                 turnon = !turnon;
+            }
+        });
+        //Enlace a la segunda actividad.
+        img_linterna_frontal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Linterna_frontal.class);
+                startActivity(intent);
             }
         });
 
@@ -231,5 +242,4 @@ public class MainActivity extends AppCompatActivity {
         textoMedidaBarra.setVisibility(View.VISIBLE);
         mySensorManager.registerListener(lightSensorListener, lightSensor, SensorManager.SENSOR_DELAY_NORMAL);
     }
-
 }
