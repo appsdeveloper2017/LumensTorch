@@ -9,23 +9,24 @@
     android:background="#000000"
     android:gravity="center"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/large_margin"
+    android:paddingLeft="@dimen/large_margin"
+    android:paddingRight="@dimen/large_margin"
+    android:paddingTop="@dimen/large_margin"
     tools:context="example.org.lumenstorch.MainActivity">
 
     <TextView
         android:id="@+id/textView2"
+        style="@style/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/medium_margin"
         android:layout_weight="1"
         android:gravity="center_horizontal"
         android:text="LUMENS TORCH"
-        android:textColor="#FFFFFF"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -35,37 +36,65 @@
         android:id="@+id/linterna_frontal"
         android:layout_width="45dp"
         android:layout_height="48dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginEnd="@dimen/medium_margin"
+        android:layout_marginTop="@dimen/medium_margin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         app:srcCompat="@drawable/linterna_frontal" />
 
     <ImageView
         android:id="@+id/boton"
-        android:layout_width="wrap_content"
+        android:layout_width="205dp"
         android:layout_height="205dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
         android:layout_weight="1"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/imagen" />
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/frontLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_weight="1"
+        android:layout_margin="@dimen/medium_margin"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/boton"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/texto_selector_color"
+            style="@style/main_activity_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="left"
+            tools:text="Seleccione el color"/>
+
+        <SeekBar
+            android:id="@+id/selector_color"
+            style="@style/Widget.AppCompat.SeekBar.Discrete"
+            android:layout_width="match_parent"
+            android:layout_height="61dp"
+            android:layout_marginBottom="@dimen/medium_margin"
+            android:layout_marginTop="@dimen/medium_margin" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/backLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/medium_margin"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/boton"
+        android:visibility="visible">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -74,26 +103,22 @@
 
             <CheckBox
                 android:id="@+id/automatic"
+                style="@style/main_activity_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="1dp"
-                android:layout_marginStart="10dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical|center_horizontal|center"
-                android:text="Luz automatica"
-                tools:layout_editor_absoluteX="43dp"
-                tools:layout_editor_absoluteY="242dp" />
+                android:text="Luz automatica" />
 
             <TextView
                 android:id="@+id/muestrabarra"
+                style="@style/main_activity_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:layout_marginStart="1dp"
                 android:layout_weight="1"
-                android:gravity="center_vertical|center_horizontal|center"
-                tools:layout_editor_absoluteX="419dp"
-                tools:layout_editor_absoluteY="231dp" />
+                android:gravity="center"
+                tools:text="@string/aplicar" />
 
         </LinearLayout>
 
@@ -102,59 +127,37 @@
             style="@style/Widget.AppCompat.SeekBar.Discrete"
             android:layout_width="match_parent"
             android:layout_height="61dp"
-            android:layout_marginEnd="1dp"
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="20dp"
-            android:max="10"
-            android:progress="3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/boton" />
+            android:layout_marginBottom="@dimen/medium_margin"
+            android:layout_marginTop="@dimen/medium_margin" />
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <TextView
-            android:id="@+id/LIGHT_available"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/boton"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="1dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="8dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textColor="#FFFFFF"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/LIGHT_reading" />
+            android:layout_marginBottom="@dimen/medium_margin"
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/LIGHT_reading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="8dp"
-            android:layout_weight="1"
-            android:textColor="#FFFFFF"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/barralumens" />
+            <TextView
+                android:id="@+id/LIGHT_available"
+                style="@style/main_activity_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/boton"
+                android:layout_gravity="center"
+                android:layout_weight="60"
+                android:gravity="center"
+                tools:text="@string/sensor_disponible" />
+
+            <TextView
+                android:id="@+id/LIGHT_reading"
+                style="@style/main_activity_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="40"
+                tools:text="@string/luz" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
