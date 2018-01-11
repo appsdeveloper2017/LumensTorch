@@ -2,11 +2,11 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
+    android:id="@+id/screen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_alignParentTop="false"
-    android:background="#000000"
+    android:background="@android:color/black"
     android:gravity="center"
     android:orientation="vertical"
     android:paddingBottom="@dimen/large_margin"
@@ -33,7 +33,7 @@
         tools:context=".MainActivity" />
 
     <ImageView
-        android:id="@+id/linterna_frontal"
+        android:id="@+id/toggle_front_back_flash"
         android:layout_width="45dp"
         android:layout_height="48dp"
         android:layout_marginEnd="@dimen/medium_margin"
@@ -51,7 +51,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/imagen" />
+        app:srcCompat="@drawable/imagen_desbloqueado" />
 
     <LinearLayout
         android:id="@+id/frontLinearLayout"
@@ -62,8 +62,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/boton"
-        android:visibility="gone">
+        app:layout_constraintTop_toBottomOf="@+id/boton">
 
         <TextView
             android:id="@+id/texto_selector_color"
@@ -72,15 +71,18 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="left"
-            tools:text="Seleccione el color"/>
+            android:text="Selecciona un color"
+            android:textColor="@android:color/black"
+            android:visibility="gone" />
 
         <SeekBar
-            android:id="@+id/selector_color"
+            android:id="@+id/color_selector"
             style="@style/Widget.AppCompat.SeekBar.Discrete"
             android:layout_width="match_parent"
             android:layout_height="61dp"
             android:layout_marginBottom="@dimen/medium_margin"
-            android:layout_marginTop="@dimen/medium_margin" />
+            android:layout_marginTop="@dimen/medium_margin"
+            android:visibility="gone" />
 
     </LinearLayout>
 
@@ -93,8 +95,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/boton"
-        android:visibility="visible">
+        app:layout_constraintTop_toBottomOf="@+id/boton">
 
         <LinearLayout
             android:layout_width="match_parent"
