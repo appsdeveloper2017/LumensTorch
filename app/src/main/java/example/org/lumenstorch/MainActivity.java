@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
     public static final boolean CHECKBOX_DEF_VALUE = false;
     public static final String SPACE = " ";
     public static final String REAR = "Rear";
+    public static final String FRONT = "Front";
     private final int MIN = 0;
     private final int MAX = 250;
     private final int INIT_VALUE = MAX / 2;
@@ -56,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
 
     private boolean isFrontScreenActivated = false;
     private boolean isFlashActivated = false;
-    private String activatedTorch = REAR;
+    private String activatedTorch;
 
     private final Integer MAX_INTEGER_COLOR = 16777215;
     private final int MAX_COLOR_SCREEN = MAX_INTEGER_COLOR;
@@ -67,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         sharedPreferences = this.getPreferences(Context.MODE_PRIVATE);
+        activatedTorch = REAR;
 
         //Casting de elementos.
         screen = (ConstraintLayout) findViewById(R.id.screen);
@@ -95,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
         colorSelector.setOnSeekBarChangeListener(this);
         lightSensor = mySensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
 
-//        setScreenByActivatedFlash(activatedTorch);
+        setupScreenByActivatedFlash(activatedTorch);
 
         //Construcción del objeto sensor de luz.
         if (lightSensor != null) {
@@ -107,6 +109,14 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
         }
 
         screen.setBackgroundColor(Color.BLACK);
+    }
+
+    private void setupScreenByActivatedFlash(String activatedTorch) {
+        if (activatedTorch.equals(REAR)) {
+            activateBackTorch();
+        } else {
+            activateFrontTorch();
+        }
     }
 
     /**
@@ -265,21 +275,21 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
 
     private void toggleActivateFrontScreen() {
         if (isFrontScreenActivated) {
-            deactivateFrontScreen();
+            setupScreenByActivatedFlash(FRONT);
         } else {
-            activateFrontScreen();
+            setupScreenByActivatedFlash(REAR);
         }
 
         isFrontScreenActivated = !isFrontScreenActivated;
     }
 
-    private void activateFrontScreen() {
+    private void activateFrontTorch() {
         toggleOnOffScreen(true);
         setFrontVisibility(View.VISIBLE);
         setBackVisibility(View.GONE);
     }
 
-    private void deactivateFrontScreen() {
+    private void activateBackTorch() {
         screen.setBackgroundColor(Color.BLACK);
         isFlashActivated = false;
         toggleOnOffFlash(isFlashActivated);
