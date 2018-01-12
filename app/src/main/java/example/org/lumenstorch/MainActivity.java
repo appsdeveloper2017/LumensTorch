@@ -23,7 +23,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener,
-        CompoundButton.OnCheckedChangeListener {
+        CompoundButton.OnCheckedChangeListener, View.OnClickListener {
 
     public static final String VALOR_ACTUAL = "valorActual";
     public static final String VALOR_CHECK_BOX = "valorCheckBox";
@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
     public static final int STRING_DEF_VALUE = -1;
     public static final boolean CHECKBOX_DEF_VALUE = false;
     public static final String SPACE = " ";
+    public static final String REAR = "Rear";
     private final int MIN = 0;
     private final int MAX = 250;
     private final int INIT_VALUE = MAX / 2;
@@ -39,7 +40,6 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
     private ImageView botonOnOff;
     private CameraManager manager;
     private String idCamara;
-    private boolean isFlashActivated = false;
     private TextView textLIGHT_available;
     private TextView textLIGHT_reading;
     private TextView textoMedidaBarra;
@@ -55,6 +55,8 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
     private ConstraintLayout screen;
 
     private boolean isFrontScreenActivated = false;
+    private boolean isFlashActivated = false;
+    private String activatedTorch = REAR;
 
     private final Integer MAX_INTEGER_COLOR = 16777215;
     private final int MAX_COLOR_SCREEN = MAX_INTEGER_COLOR;
@@ -78,44 +80,30 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
         textoSelectorColor = (TextView) findViewById(R.id.texto_selector_color);
         colorSelector = (SeekBar) findViewById(R.id.color_selector);
         manager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
-//        frontLinear = (LinearLayout) findViewById(R.id.frontLinearLayout);
-//        backLinear = (LinearLayout) findViewById(R.id.backLinearLayout);
-
-        imgLinternaFrontal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toggleActivateFrontScreen();
-//                Intent intent = new Intent(getApplicationContext(), Linterna_frontal.class);
-//                startActivity(intent);
-//                setFrontVisibility(View.VISIBLE);
-//                setBackVisibility(View.GONE);
-            }
-        });
-        botonOnOff.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                isFlashActivated = !isFlashActivated;
-                toggleOnOffFlash(isFlashActivated);
-            }
-        });
-        checkBox.setOnCheckedChangeListener(this);
-        barraLumens.setOnSeekBarChangeListener(this);
-        colorSelector.setOnSeekBarChangeListener(this);
-
+        mySensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         try {
             idCamara = manager.getCameraIdList()[0];
         } catch (CameraAccessException cae) {
             Log.e(TAG, "Error al acceder a la cámara: " + cae.toString());
         }
 
-        //Construcción del objeto sensor de luz.
-        mySensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        // Listeners settings
+        imgLinternaFrontal.setOnClickListener(this);
+        botonOnOff.setOnClickListener(this);
+        checkBox.setOnCheckedChangeListener(this);
+        barraLumens.setOnSeekBarChangeListener(this);
+        colorSelector.setOnSeekBarChangeListener(this);
         lightSensor = mySensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
+
+//        setScreenByActivatedFlash(activatedTorch);
+
+        //Construcción del objeto sensor de luz.
         if (lightSensor != null) {
             textLIGHT_available.setText(getResources().getString(R.string.sensor_disponible));
         } else {
             checkBox.setVisibility(View.INVISIBLE);
-            textLIGHT_available.setText(getResources().getString(R.string.sensor_no_disponible));
+            textLIGHT_available.setText(getResources().getString(R.string.sensor_disponible));
+//            textLIGHT_available.setText(getResources().getString(R.string.sensor_no_disponible));
         }
 
         screen.setBackgroundColor(Color.BLACK);
@@ -156,6 +144,25 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
 
         toggleOnOffFlash(false);
         mySensorManager.unregisterListener(lightSensorListener);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.boton:
+                isFlashActivated = !isFlashActivated;
+                toggleOnOffFlash(isFlashActivated);
+                break;
+            case R.id.toggle_front_back_flash:
+                toggleActivateFrontScreen();
+//                Intent intent = new Intent(getApplicationContext(), Linterna_frontal.class);
+//                startActivity(intent);
+//                setFrontVisibility(View.VISIBLE);
+//                setBackVisibility(View.GONE);
+                break;
+            default:
+                break;
+        }
     }
 
     @Override
