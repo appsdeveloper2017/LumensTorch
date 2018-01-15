@@ -17,7 +17,7 @@
     tools:context="example.org.lumenstorch.BackTorch">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/title"
         style="@style/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -40,7 +40,7 @@
         android:layout_marginEnd="@dimen/medium_margin"
         android:layout_marginTop="@dimen/medium_margin"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/title"
         app:srcCompat="@drawable/linterna_frontal"/>
 
     <ImageView

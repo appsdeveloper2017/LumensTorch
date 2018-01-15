@@ -4,21 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
-import android.hardware.camera2.CameraAccessException;
-import android.hardware.camera2.CameraManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -27,7 +18,6 @@ public class FrontTorch extends AppCompatActivity implements SeekBar.OnSeekBarCh
         View.OnClickListener {
 
     public final String VALOR_COLOR_ACTUAL = "valorActual";
-    public final String VALOR_CHECK_BOX = "valorCheckBox";
     public final String TAG = "Error: ";
     public final String SPACE = " ";
     public final int STRING_DEF_VALUE = -1;
@@ -37,34 +27,42 @@ public class FrontTorch extends AppCompatActivity implements SeekBar.OnSeekBarCh
 
     private SharedPreferences sharedPreferences;
     private ImageView botonOnOff;
+    private TextView textColorSelector;
     private SeekBar colorSelector;
     private ImageView imgCambioLinterna;
     private ConstraintLayout screen;
+    private TextView title;
 
     private boolean isFlashActivated = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_back_torch);
+        setContentView(R.layout.activity_front_torch);
         sharedPreferences = this.getPreferences(Context.MODE_PRIVATE);
 
         //Casting de elementos.
         screen = (ConstraintLayout) findViewById(R.id.screen);
         imgCambioLinterna = (ImageView) findViewById(R.id.toggle_front_back_flash);
         botonOnOff = (ImageView) findViewById(R.id.boton);
+        textColorSelector = (TextView) findViewById(R.id.text_color_selector);
+        // TODO: Poner colores al selector de color
+        // TODO: Personalizar la barra selectora de color
         colorSelector = (SeekBar) findViewById(R.id.color_selector);
+        title = (TextView) findViewById(R.id.title);
 
         // Listeners settings
         imgCambioLinterna.setOnClickListener(this);
         botonOnOff.setOnClickListener(this);
         colorSelector.setOnSeekBarChangeListener(this);
 
+        textColorSelector.setText(getResources().getString(R.string.text_color_selector));
         screen.setBackgroundColor(Color.BLACK);
+        drawItemsWhite();
     }
 
     /**
-     * Se inicializará el estado del checkBox y el valor de la seekbar
+     * Se inicializará el valor de la seekbar
      */
     @Override
     protected void onResume() {
@@ -76,7 +74,7 @@ public class FrontTorch extends AppCompatActivity implements SeekBar.OnSeekBarCh
     }
 
     /**
-     * Se guardará el estado del checkBox y el valor de la seekbar
+     * Se guardará el valor de la seekbar
      */
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -107,7 +105,9 @@ public class FrontTorch extends AppCompatActivity implements SeekBar.OnSeekBarCh
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        takeScreenColorFromColorSelector();
+        if (isFlashActivated) {
+            takeScreenColorFromColorSelector();
+        }
 
     }
 
@@ -145,26 +145,47 @@ public class FrontTorch extends AppCompatActivity implements SeekBar.OnSeekBarCh
         switch (seekbarValue) {
             case 0:
                 screen.setBackgroundColor(Color.WHITE);
+                drawItemsBlack();
                 break;
             case 1:
                 screen.setBackgroundColor(Color.YELLOW);
+                drawItemsBlack();
                 break;
             case 2:
                 screen.setBackgroundColor(Color.GREEN);
+                drawItemsWhite();
                 break;
             case 3:
                 screen.setBackgroundColor(Color.BLUE);
+                drawItemsWhite();
                 break;
             case 4:
                 screen.setBackgroundColor(Color.MAGENTA);
+                drawItemsWhite();
                 break;
             case 5:
                 screen.setBackgroundColor(Color.RED);
+                drawItemsWhite();
                 break;
             default:
                 screen.setBackgroundColor(Color.BLACK);
+                drawItemsWhite();
                 break;
         }
+    }
+
+    private void drawItemsWhite() {
+        title.setTextColor(Color.WHITE);
+        botonOnOff.setImageDrawable(getResources().getDrawable(R.drawable.imagen_desbloqueado));
+        imgCambioLinterna.setImageDrawable(getResources().getDrawable(R.drawable.linterna_frontal));
+        textColorSelector.setTextColor(Color.WHITE);
+    }
+
+    private void drawItemsBlack() {
+        title.setTextColor(Color.BLACK);
+        botonOnOff.setImageDrawable(getResources().getDrawable(R.drawable.imagen_black));
+        imgCambioLinterna.setImageDrawable(getResources().getDrawable(R.drawable.linterna_frontal_black));
+        textColorSelector.setTextColor(Color.BLACK);
     }
 
     public void toggleOnOffScreen(boolean activated) {
@@ -172,10 +193,8 @@ public class FrontTorch extends AppCompatActivity implements SeekBar.OnSeekBarCh
             takeScreenColorFromColorSelector();
         } else {
             screen.setBackgroundColor(Color.BLACK);
+            drawItemsWhite();
         }
     }
 
-    public void changeScreenTextColor() {
-        // TODO: Cambiar el color del texto y de los iconos en función del color de fondo para que se vean bien
-    }
 }
