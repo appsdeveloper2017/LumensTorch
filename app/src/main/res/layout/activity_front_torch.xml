@@ -65,61 +65,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/boton">
 
-        <CheckBox
-            android:id="@+id/automatic"
+        <TextView
+            android:id="@+id/text_color_selector"
             style="@style/main_activity_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="1dp"
-            android:layout_weight="1"
-            android:gravity="start|center_vertical"
-            android:text="Luz automatica"
-            android:layout_marginBottom="@dimen/small_margin"/>
+            android:layout_marginBottom="@dimen/large_margin"
+            tools:text="Selecciona el color para la pantalla"/>
 
         <ImageView
             android:id="@+id/colorBar"
             android:layout_width="match_parent"
             android:layout_height="20dp"
-            android:background="@android:color/holo_blue_light" />
-        <!--android:layout_marginBottom="@dimen/medium_margin"-->
-        <!--android:layout_marginTop="@dimen/medium_margin"/>-->
+            android:background="@android:color/holo_blue_light"
+            android:layout_marginBottom="@dimen/large_margin"/>
 
         <SeekBar
             android:id="@+id/color_selector"
             style="@style/Widget.AppCompat.SeekBar.Discrete"
             android:layout_width="match_parent"
             android:layout_height="20dp"/>
-        <!--android:layout_marginBottom="@dimen/medium_margin"-->
-        <!--android:layout_marginTop="@dimen/medium_margin"/>-->
-
-        <LinearLayout
-            android:id="@+id/linearLayout2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/medium_margin"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/LIGHT_available"
-                style="@style/main_activity_text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/boton"
-                android:layout_gravity="center"
-                android:layout_weight="60"
-                android:gravity="center"
-                tools:text="@string/sensor_disponible"/>
-
-            <TextView
-                android:id="@+id/LIGHT_reading"
-                style="@style/main_activity_text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="40"
-                tools:text="@string/luz"/>
-
-        </LinearLayout>
 
     </LinearLayout>
 

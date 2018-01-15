@@ -26,19 +26,18 @@ import android.widget.TextView;
 public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener,
         CompoundButton.OnCheckedChangeListener, View.OnClickListener {
 
-    public static final String VALOR_ACTUAL = "valorActual";
-    public static final String VALOR_CHECK_BOX = "valorCheckBox";
-    public static final String TAG = "Error: ";
-    public static final int STRING_DEF_VALUE = -1;
-    public static final boolean CHECKBOX_DEF_VALUE = false;
-    public static final String SPACE = " ";
-    //    public static final String REAR = "Rear";
-//    public static final String FRONT = "Front";
+    public final String VALOR_ACTUAL = "valorActual";
+    public final String VALOR_CHECK_BOX = "valorCheckBox";
+    public final String TAG = "Error: ";
+    public final String SPACE = " ";
+    public final boolean CHECKBOX_DEF_VALUE = false;
+    public final int STRING_DEF_VALUE = -1;
     private final int MIN = 0;
     private final int MAX = 250;
     private final int INIT_VALUE = MAX / 2;
 
     private SharedPreferences sharedPreferences;
+
     private ImageView botonOnOff;
     private CameraManager manager;
     private String idCamara;
@@ -50,24 +49,15 @@ public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarCha
     private SensorManager mySensorManager;
     private Sensor lightSensor;
     private ImageView imgLinternaFrontal;
-    //    private TextView textoSelectorColor;
-//    private SeekBar colorSelector;
     private ConstraintLayout screen;
 
-    //    private boolean isFrontScreenActivated = false;
     private boolean isFlashActivated = false;
-//    private String activatedTorch;
-
-//    private final Integer MAX_INTEGER_COLOR = 16777215;
-//    private final int MAX_COLOR_SCREEN = MAX_INTEGER_COLOR;
-//    private final int INIT_COLOR_SCREEN_VALUE = MAX_COLOR_SCREEN;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_back_torch);
         sharedPreferences = this.getPreferences(Context.MODE_PRIVATE);
-//        activatedTorch = REAR;
 
         //Casting de elementos.
         screen = (ConstraintLayout) findViewById(R.id.screen);
@@ -78,10 +68,9 @@ public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarCha
         textoMedidaBarra = (TextView) findViewById(R.id.muestrabarra);
         checkBox = (CheckBox) findViewById(R.id.automatic);
         barraLumens = (SeekBar) findViewById(R.id.color_selector);
-//        textoSelectorColor = (TextView) findViewById(R.id.texto_selector_color);
-//        colorSelector = (SeekBar) findViewById(R.id.color_selector);
         manager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
         mySensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+
         try {
             idCamara = manager.getCameraIdList()[0];
         } catch (CameraAccessException cae) {
@@ -93,21 +82,10 @@ public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarCha
         botonOnOff.setOnClickListener(this);
         checkBox.setOnCheckedChangeListener(this);
         barraLumens.setOnSeekBarChangeListener(this);
-//        colorSelector.setOnSeekBarChangeListener(this);
         lightSensor = mySensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
-
-//        setupScreenByActivatedFlash(activatedTorch);
 
         screen.setBackgroundColor(Color.BLACK);
     }
-
-//    private void setupScreenByActivatedFlash(String activatedTorch) {
-//        if (activatedTorch.equals(REAR)) {
-//            activateBackTorch();
-//        } else {
-//            activateFrontTorch();
-//        }
-//    }
 
     /**
      * Se inicializará el estado del checkBox y el valor de la seekbar
@@ -119,8 +97,6 @@ public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarCha
         Integer valorBarraLumens = recuperarValorActualDePreferencias();
         barraLumens.setMax(MAX - MIN);
         barraLumens.setProgress(valorBarraLumens - MIN);
-//        colorSelector.setMax(MAX_COLOR_SCREEN);
-//        colorSelector.setProgress(INIT_COLOR_SCREEN_VALUE);
         textoMedidaBarra.setText(getResources().getString(R.string.aplicar)
                 + SPACE + valorBarraLumens + SPACE + getResources().getString(R.string.lumens));
 
@@ -161,7 +137,6 @@ public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarCha
                 toggleOnOffFlash(isFlashActivated);
                 break;
             case R.id.toggle_front_back_flash:
-//                toggleActivateFrontScreen();
                 openFrontTorch();
                 break;
             default:
@@ -189,18 +164,13 @@ public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarCha
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-//        switch (seekBar.getId()) {
-//            case R.id.color_selector:
-//                takeScreenColorFromColorSelector();
-//                break;
-//            default:
-//                break;
-//        }
+
     }
 
     private void openFrontTorch() {
         Intent intent = new Intent(getApplicationContext(), FrontTorch.class);
         startActivity(intent);
+        // TODO: Transición lateral para dar la sensación del cambio de trasera a frontal
     }
 
     /**
@@ -215,20 +185,11 @@ public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarCha
         return valorActual;
     }
 
-//    private void takeScreenColorFromColorSelector() {
-//        Integer seekbarValue = colorSelector.getProgress();
-//        Integer color = ((MAX_INTEGER_COLOR / MAX) * seekbarValue);
-//        String hexColor = String.format("#%06X", (0xFFFFFF & color));
-//
-//        screen.setBackgroundColor(Color.parseColor(hexColor));
-//    }
-
     private final SensorEventListener lightSensorListener
             = new SensorEventListener() {
 
         @Override
         public void onAccuracyChanged(Sensor sensor, int accuracy) {
-            // NO HACE NADA EN EL CODIGO, LO GENERA EL METODO.
 
         }
 
@@ -259,56 +220,17 @@ public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarCha
 
     }
 
-//    private void toggleActivateFrontScreen() {
-//        if (isFrontScreenActivated) {
-//            setupScreenByActivatedFlash(FRONT);
-//        } else {
-//            setupScreenByActivatedFlash(REAR);
-//        }
-//
-//        isFrontScreenActivated = !isFrontScreenActivated;
-//    }
-
-//    private void activateFrontTorch() {
-//        toggleOnOffScreen(true);
-//        setFrontVisibility(View.VISIBLE);
-//        setBackVisibility(View.GONE);
-//    }
-
-//    private void activateBackTorch() {
-//        screen.setBackgroundColor(Color.BLACK);
-//        isFlashActivated = false;
-//        toggleOnOffScreen(isFlashActivated);
-//        setFrontVisibility(View.GONE);
-//        setBackVisibility(View.VISIBLE);
-//    }
-
-//    private void setFrontVisibility(int visibility) {
-//        textoSelectorColor.setVisibility(visibility);
-////        colorSelector.setVisibility(visibility);
-//    }
-
-//    private void setBackVisibility(int visibility) {
-//        checkBox.setVisibility(visibility);
-//        textoMedidaBarra.setVisibility(visibility);
-//        barraLumens.setVisibility(visibility);
-//        textLightAvailable.setVisibility(visibility);
-//        textLightReading.setVisibility(visibility);
-//    }
-
-//    private void toggleOnOffScreen(boolean activate) {
-//        if (activate) {
-////            takeScreenColorFromColorSelector();
-//            screen.setBackgroundColor(Color.WHITE);
-//        } else {
-//            screen.setBackgroundColor(Color.BLACK);
-//        }
-//    }
-
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void toggleOnOffFlash(boolean activated) {
         try {
             manager.setTorchMode(idCamara, activated);
+            if (!checkBox.isChecked()) {
+                if (activated) {
+                    botonOnOff.setImageDrawable(getResources().getDrawable(R.drawable.img_color));
+                } else {
+                    botonOnOff.setImageDrawable(getResources().getDrawable(R.drawable.imagen_desbloqueado));
+                }
+            }
         } catch (CameraAccessException cae) {
             Log.e(TAG, "Error al acceder a la cámara: " + cae.toString());
         } catch (IllegalArgumentException iae) {
