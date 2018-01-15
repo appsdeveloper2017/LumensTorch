@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/screen"
@@ -13,7 +14,7 @@
     android:paddingLeft="@dimen/large_margin"
     android:paddingRight="@dimen/large_margin"
     android:paddingTop="@dimen/large_margin"
-    tools:context="example.org.lumenstorch.MainActivity">
+    tools:context="example.org.lumenstorch.BackTorch">
 
     <TextView
         android:id="@+id/textView2"
@@ -30,7 +31,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:context=".MainActivity" />
+        tools:context=".BackTorch"/>
 
     <ImageView
         android:id="@+id/toggle_front_back_flash"
@@ -40,7 +41,7 @@
         android:layout_marginTop="@dimen/medium_margin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:srcCompat="@drawable/linterna_frontal" />
+        app:srcCompat="@drawable/linterna_frontal"/>
 
     <ImageView
         android:id="@+id/boton"
@@ -51,40 +52,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/imagen_desbloqueado" />
-
-    <LinearLayout
-        android:id="@+id/frontLinearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/medium_margin"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/boton">
-
-        <TextView
-            android:id="@+id/texto_selector_color"
-            style="@style/main_activity_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="left"
-            android:text="Selecciona un color"
-            android:textColor="@android:color/black"
-            android:visibility="gone" />
-
-        <SeekBar
-            android:id="@+id/color_selector"
-            style="@style/Widget.AppCompat.SeekBar.Discrete"
-            android:layout_width="match_parent"
-            android:layout_height="61dp"
-            android:layout_marginBottom="@dimen/medium_margin"
-            android:layout_marginTop="@dimen/medium_margin"
-            android:visibility="gone" />
-
-    </LinearLayout>
+        app:srcCompat="@drawable/imagen_desbloqueado"/>
 
     <LinearLayout
         android:id="@+id/backLinearLayout"
@@ -97,39 +65,32 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/boton">
 
-        <LinearLayout
+        <CheckBox
+            android:id="@+id/automatic"
+            style="@style/main_activity_text"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="1dp"
+            android:layout_weight="1"
+            android:gravity="start|center_vertical"
+            android:text="Luz automatica"
+            android:layout_marginBottom="@dimen/small_margin"/>
 
-            <CheckBox
-                android:id="@+id/automatic"
-                style="@style/main_activity_text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="1dp"
-                android:layout_weight="1"
-                android:gravity="center_vertical|center_horizontal|center"
-                android:text="Luz automatica" />
-
-            <TextView
-                android:id="@+id/muestrabarra"
-                style="@style/main_activity_text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                tools:text="@string/aplicar" />
-
-        </LinearLayout>
+        <ImageView
+            android:id="@+id/colorBar"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:background="@android:color/holo_blue_light" />
+        <!--android:layout_marginBottom="@dimen/medium_margin"-->
+        <!--android:layout_marginTop="@dimen/medium_margin"/>-->
 
         <SeekBar
-            android:id="@+id/barralumens"
+            android:id="@+id/color_selector"
             style="@style/Widget.AppCompat.SeekBar.Discrete"
             android:layout_width="match_parent"
-            android:layout_height="61dp"
-            android:layout_marginBottom="@dimen/medium_margin"
-            android:layout_marginTop="@dimen/medium_margin" />
+            android:layout_height="20dp"/>
+        <!--android:layout_marginBottom="@dimen/medium_margin"-->
+        <!--android:layout_marginTop="@dimen/medium_margin"/>-->
 
         <LinearLayout
             android:id="@+id/linearLayout2"
@@ -147,7 +108,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="60"
                 android:gravity="center"
-                tools:text="@string/sensor_disponible" />
+                tools:text="@string/sensor_disponible"/>
 
             <TextView
                 android:id="@+id/LIGHT_reading"
@@ -156,7 +117,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="40"
-                tools:text="@string/luz" />
+                tools:text="@string/luz"/>
 
         </LinearLayout>
 
