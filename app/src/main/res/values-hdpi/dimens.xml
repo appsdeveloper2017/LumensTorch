@@ -6,6 +6,8 @@
 
     <!-- Items dimensions -->
     <dimen name="main_button">175dp</dimen>
-    <dimen name="selector_bar">30dp</dimen>
+    <dimen name="title">25sp</dimen>
+    <dimen name="text">15sp</dimen>
+    <dimen name="selector_bar_height">30dp</dimen>
 
 </resources>

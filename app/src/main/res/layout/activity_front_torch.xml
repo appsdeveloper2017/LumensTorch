@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/screen"
@@ -30,7 +29,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:context=".BackTorch"/>
+        tools:context=".BackTorch" />
 
     <ImageView
         android:id="@+id/toggle_front_back_flash"
@@ -40,7 +39,7 @@
         android:layout_marginTop="@dimen/medium_margin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title"
-        app:srcCompat="@drawable/linterna_frontal"/>
+        app:srcCompat="@drawable/linterna_frontal" />
 
     <ImageView
         android:id="@+id/main_button"
@@ -51,7 +50,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/imagen_desbloqueado"/>
+        app:srcCompat="@drawable/imagen_desbloqueado" />
 
     <LinearLayout
         android:id="@+id/backLinearLayout"
@@ -61,7 +60,8 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_button">
 
         <TextView
             android:id="@+id/text_color_selector"
@@ -69,68 +69,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/large_margin"
-            tools:text="Selecciona el color para la pantalla"/>
+            tools:text="Selecciona el color para la pantalla" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/selector_bar"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/colorBarWhite"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/selector_bar"
-                android:layout_weight="1"
-                android:background="@color/white"
-                android:layout_marginBottom="@dimen/large_margin"/>
-
-            <ImageView
-                android:id="@+id/colorBarYellow"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/selector_bar"
-                android:layout_weight="1"
-                android:background="@color/yellow"
-                android:layout_marginBottom="@dimen/large_margin"/>
-
-            <ImageView
-                android:id="@+id/colorBarGreen"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/selector_bar"
-                android:layout_weight="1"
-                android:background="@color/green"
-                android:layout_marginBottom="@dimen/large_margin"/>
-
-            <ImageView
-                android:id="@+id/colorBarBlue"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/selector_bar"
-                android:layout_weight="1"
-                android:background="@color/blue"
-                android:layout_marginBottom="@dimen/large_margin"/>
-
-            <ImageView
-                android:id="@+id/colorBarMagenta"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/selector_bar"
-                android:layout_weight="1"
-                android:background="@color/magenta"
-                android:layout_marginBottom="@dimen/large_margin"/>
-
-            <ImageView
-                android:id="@+id/colorBarRed"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/selector_bar"
-                android:layout_weight="1"
-                android:background="@color/red"
-                android:layout_marginBottom="@dimen/large_margin"/>
-
-        </LinearLayout>
+        <include layout="@layout/item_color_bar" />
 
         <SeekBar
             android:id="@+id/color_selector"
             style="@style/Widget.AppCompat.SeekBar.Discrete"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/selector_bar"/>
+            android:layout_width="@dimen/selector_bar_width"
+            android:layout_height="@dimen/selector_bar_height"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginEnd="@dimen/selector_bar_margin"
+            android:layout_marginStart="@dimen/selector_bar_margin" />
 
     </LinearLayout>
 

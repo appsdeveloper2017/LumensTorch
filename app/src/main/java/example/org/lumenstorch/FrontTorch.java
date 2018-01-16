@@ -207,7 +207,7 @@ public class FrontTorch extends AppCompatActivity implements SeekBar.OnSeekBarCh
                 drawItemsWhite();
                 break;
             default:
-                screen.setBackgroundColor(Color.BLACK);
+                screen.setBackgroundColor(getResources().getColor(R.color.black));
                 drawItemsWhite();
                 break;
         }

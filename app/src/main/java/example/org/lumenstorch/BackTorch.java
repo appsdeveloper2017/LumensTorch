@@ -254,26 +254,17 @@ public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarCha
                 toggleOnOffFlash(isFlashActivated);
             }
         }
-
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void toggleOnOffFlash(boolean activated) {
         try {
             manager.setTorchMode(idCamara, activated);
-//            if (!checkBox.isChecked()) {
-//                if (activated) {
-//                    botonOnOff.setImageDrawable(getResources().getDrawable(R.drawable.img_color));
-//                } else {
-//                    botonOnOff.setImageDrawable(getResources().getDrawable(R.drawable.imagen_desbloqueado));
-//                }
-//            }
         } catch (CameraAccessException cae) {
             Log.e(TAG, "Error al acceder a la cámara: " + cae.toString());
         } catch (IllegalArgumentException iae) {
             Log.e(TAG, "No hay flash: " + iae.toString());
         }
-
     }
 
     public void comprobarCheckBox(boolean isChecked) {

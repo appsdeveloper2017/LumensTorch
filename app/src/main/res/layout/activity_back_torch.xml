@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/screen"
@@ -30,7 +29,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:context=".BackTorch"/>
+        tools:context=".BackTorch" />
 
     <ImageView
         android:id="@+id/toggle_front_back_flash"
@@ -38,9 +37,10 @@
         android:layout_height="@dimen/torch_button_height"
         android:layout_marginEnd="@dimen/medium_margin"
         android:layout_marginTop="@dimen/medium_margin"
+        android:src="@drawable/linterna_frontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title"
-        app:srcCompat="@drawable/linterna_frontal"/>
+        app:srcCompat="@drawable/linterna_frontal" />
 
     <ImageView
         android:id="@+id/main_button"
@@ -51,7 +51,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/imagen_desbloqueado"/>
+        app:srcCompat="@drawable/imagen_desbloqueado" />
 
     <LinearLayout
         android:id="@+id/backLinearLayout"
@@ -61,7 +61,8 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_button">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -75,17 +76,18 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="1dp"
                 android:layout_weight="1"
-                android:gravity="center_vertical|center_horizontal|center"
-                android:text="@string/luz_automatica"/>
+                android:gravity="center_vertical|left"
+                android:text="@string/luz_automatica" />
 
             <TextView
                 android:id="@+id/muestrabarra"
                 style="@style/main_activity_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:layout_weight="1 "
                 android:gravity="center"
-                tools:text="@string/aplicar"/>
+                tools:text="@string/aplicar" />
 
         </LinearLayout>
 
@@ -93,9 +95,9 @@
             android:id="@+id/color_selector"
             style="@style/Widget.AppCompat.SeekBar.Discrete"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/selector_bar"
+            android:layout_height="@dimen/selector_bar_height"
             android:layout_marginBottom="@dimen/medium_margin"
-            android:layout_marginTop="@dimen/medium_margin"/>
+            android:layout_marginTop="@dimen/medium_margin" />
 
         <LinearLayout
             android:id="@+id/linearLayout2"
@@ -112,7 +114,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="60"
                 android:gravity="center"
-                tools:text="@string/sensor_disponible"/>
+                tools:text="@string/sensor_disponible" />
 
             <TextView
                 android:id="@+id/LIGHT_reading"
@@ -121,7 +123,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="40"
-                tools:text="@string/luz"/>
+                tools:text="@string/luz" />
 
         </LinearLayout>
 
