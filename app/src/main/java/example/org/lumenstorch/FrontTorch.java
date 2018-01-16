@@ -43,6 +43,8 @@ public class FrontTorch extends AppCompatActivity implements SeekBar.OnSeekBarCh
         setContentView(R.layout.activity_front_torch);
         sharedPreferences = this.getPreferences(Context.MODE_PRIVATE);
 
+        // TODO: Incluir banner publicidad
+
         //Casting de elementos.
         screen = (ConstraintLayout) findViewById(R.id.screen);
         imgCambioLinterna = (ImageView) findViewById(R.id.toggle_front_back_flash);
@@ -161,6 +163,7 @@ public class FrontTorch extends AppCompatActivity implements SeekBar.OnSeekBarCh
         Intent intent = new Intent(getApplicationContext(), BackTorch.class);
         startActivity(intent);
         overridePendingTransition(R.anim.appear_from_left_to_right, R.anim.disappear_from_left_to_right);
+        finish();
     }
 
     /**
