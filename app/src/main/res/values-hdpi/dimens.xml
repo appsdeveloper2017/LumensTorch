@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="medium_margin">4dp</dimen>
+
+    <!-- Items dimensions -->
+    <dimen name="main_button">175dp</dimen>
+    <dimen name="selector_bar">30dp</dimen>
+
+</resources>

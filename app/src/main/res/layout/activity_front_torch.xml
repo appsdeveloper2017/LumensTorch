@@ -26,8 +26,7 @@
         android:layout_marginTop="@dimen/medium_margin"
         android:layout_weight="1"
         android:gravity="center_horizontal"
-        android:text="LUMENS TORCH"
-        android:textSize="20sp"
+        android:text="@string/lm_torch"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -35,8 +34,8 @@
 
     <ImageView
         android:id="@+id/toggle_front_back_flash"
-        android:layout_width="45dp"
-        android:layout_height="48dp"
+        android:layout_width="@dimen/torch_button_width"
+        android:layout_height="@dimen/torch_button_height"
         android:layout_marginEnd="@dimen/medium_margin"
         android:layout_marginTop="@dimen/medium_margin"
         app:layout_constraintEnd_toEndOf="parent"
@@ -44,9 +43,9 @@
         app:srcCompat="@drawable/linterna_frontal"/>
 
     <ImageView
-        android:id="@+id/boton"
-        android:layout_width="205dp"
-        android:layout_height="205dp"
+        android:id="@+id/main_button"
+        android:layout_width="@dimen/main_button"
+        android:layout_height="@dimen/main_button"
         android:layout_weight="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -62,8 +61,7 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/boton">
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:id="@+id/text_color_selector"
@@ -76,7 +74,7 @@
         <ImageView
             android:id="@+id/colorBar"
             android:layout_width="match_parent"
-            android:layout_height="20dp"
+            android:layout_height="@dimen/selector_bar"
             android:background="@android:color/holo_blue_light"
             android:layout_marginBottom="@dimen/large_margin"/>
 
@@ -84,7 +82,7 @@
             android:id="@+id/color_selector"
             style="@style/Widget.AppCompat.SeekBar.Discrete"
             android:layout_width="match_parent"
-            android:layout_height="20dp"/>
+            android:layout_height="@dimen/selector_bar"/>
 
     </LinearLayout>
 

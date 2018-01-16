@@ -10,12 +10,12 @@
     <!-- Main activity -->
     <style name="title">
         <item name="android:textColor">@android:color/white</item>
-        <item name="android:textSize">25sp</item>
+        <item name="android:textSize">@dimen/title</item>
     </style>
 
     <style name="main_activity_text">
         <item name="android:textColor">@android:color/white</item>
-        <item name="android:textSize">15sp</item>
+        <item name="android:textSize">@dimen/text</item>
     </style>
 
 </resources>

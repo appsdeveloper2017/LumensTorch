@@ -66,7 +66,7 @@ public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarCha
         //Casting de elementos.
         screen = (ConstraintLayout) findViewById(R.id.screen);
         imgLinternaFrontal = (ImageView) findViewById(R.id.toggle_front_back_flash);
-        botonOnOff = (ImageView) findViewById(R.id.boton);
+        botonOnOff = (ImageView) findViewById(R.id.main_button);
         textLightAvailable = (TextView) findViewById(R.id.LIGHT_available);
         textLightReading = (TextView) findViewById(R.id.LIGHT_reading);
         textoMedidaBarra = (TextView) findViewById(R.id.muestrabarra);
@@ -136,7 +136,7 @@ public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarCha
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.boton:
+            case R.id.main_button:
                 isFlashActivated = !isFlashActivated;
                 animBotonOnOff(view);
                 break;

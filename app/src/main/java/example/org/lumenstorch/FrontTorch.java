@@ -48,7 +48,7 @@ public class FrontTorch extends AppCompatActivity implements SeekBar.OnSeekBarCh
         //Casting de elementos.
         screen = (ConstraintLayout) findViewById(R.id.screen);
         imgCambioLinterna = (ImageView) findViewById(R.id.toggle_front_back_flash);
-        botonOnOff = (ImageView) findViewById(R.id.boton);
+        botonOnOff = (ImageView) findViewById(R.id.main_button);
         textColorSelector = (TextView) findViewById(R.id.text_color_selector);
         // TODO: Poner colores al selector de color
         // TODO: Personalizar la barra selectora de color
@@ -97,7 +97,7 @@ public class FrontTorch extends AppCompatActivity implements SeekBar.OnSeekBarCh
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.boton:
+            case R.id.main_button:
                 isFlashActivated = !isFlashActivated;
                 animBotonOnOff(view);
                 break;
