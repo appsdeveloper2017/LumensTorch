@@ -71,12 +71,60 @@
             android:layout_marginBottom="@dimen/large_margin"
             tools:text="Selecciona el color para la pantalla"/>
 
-        <ImageView
-            android:id="@+id/colorBar"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/selector_bar"
-            android:background="@android:color/holo_blue_light"
-            android:layout_marginBottom="@dimen/large_margin"/>
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/colorBarWhite"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/selector_bar"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:layout_marginBottom="@dimen/large_margin"/>
+
+            <ImageView
+                android:id="@+id/colorBarYellow"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/selector_bar"
+                android:layout_weight="1"
+                android:background="@color/yellow"
+                android:layout_marginBottom="@dimen/large_margin"/>
+
+            <ImageView
+                android:id="@+id/colorBarGreen"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/selector_bar"
+                android:layout_weight="1"
+                android:background="@color/green"
+                android:layout_marginBottom="@dimen/large_margin"/>
+
+            <ImageView
+                android:id="@+id/colorBarBlue"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/selector_bar"
+                android:layout_weight="1"
+                android:background="@color/blue"
+                android:layout_marginBottom="@dimen/large_margin"/>
+
+            <ImageView
+                android:id="@+id/colorBarMagenta"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/selector_bar"
+                android:layout_weight="1"
+                android:background="@color/magenta"
+                android:layout_marginBottom="@dimen/large_margin"/>
+
+            <ImageView
+                android:id="@+id/colorBarRed"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/selector_bar"
+                android:layout_weight="1"
+                android:background="@color/red"
+                android:layout_marginBottom="@dimen/large_margin"/>
+
+        </LinearLayout>
 
         <SeekBar
             android:id="@+id/color_selector"

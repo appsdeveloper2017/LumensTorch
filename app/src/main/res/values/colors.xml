@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- App colors -->
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!-- Color bar selector colors -->
+    <color name="white">@android:color/white</color>
+    <color name="yellow">@android:color/holo_green_light</color>
+    <color name="green">@android:color/holo_green_dark</color>
+    <color name="blue">@android:color/holo_blue_dark</color>
+    <color name="magenta">@android:color/holo_red_light</color>
+    <color name="red">@android:color/holo_red_dark</color>
+
 </resources>
