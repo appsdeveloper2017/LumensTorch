@@ -98,35 +98,19 @@ public class FrontTorch extends AppCompatActivity implements SeekBar.OnSeekBarCh
             case R.id.boton:
                 isFlashActivated = !isFlashActivated;
                 animBotonOnOff(view);
-                toggleOnOffScreen(isFlashActivated);
                 break;
             case R.id.toggle_front_back_flash:
-                animFrontTorchButtonA(view);
+                animFrontTorchButton(view);
                 break;
             default:
                 break;
         }
     }
 
-    private void animFrontTorchButtonA(final View view) {
+    private void animFrontTorchButton(final View view) {
         Animation anim = AnimationUtils.loadAnimation(this, R.anim.image_torch_mirror_right);
-        anim.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                openBackTorch();
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-
-            }
-        });
         view.startAnimation(anim);
+        openBackTorch();
     }
 
     private void animBotonOnOff(View view) {
@@ -136,6 +120,22 @@ public class FrontTorch extends AppCompatActivity implements SeekBar.OnSeekBarCh
         } else {
             anim = AnimationUtils.loadAnimation(this, R.anim.boton_off);
         }
+        anim.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                toggleOnOffScreen(isFlashActivated);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
         view.startAnimation(anim);
     }
 
@@ -160,7 +160,7 @@ public class FrontTorch extends AppCompatActivity implements SeekBar.OnSeekBarCh
     private void openBackTorch() {
         Intent intent = new Intent(getApplicationContext(), BackTorch.class);
         startActivity(intent);
-        // TODO: Transición lateral para dar la sensación del cambio de frontal a trasera
+        overridePendingTransition(R.anim.appear_from_left_to_right, R.anim.disappear_from_left_to_right);
     }
 
     /**

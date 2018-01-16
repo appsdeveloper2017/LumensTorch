@@ -137,35 +137,19 @@ public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarCha
             case R.id.boton:
                 isFlashActivated = !isFlashActivated;
                 animBotonOnOff(view);
-                toggleOnOffFlash(isFlashActivated);
                 break;
             case R.id.toggle_front_back_flash:
-                animFrontTorchButtonA(view);
+                animFrontTorchButton(view);
                 break;
             default:
                 break;
         }
     }
 
-    private void animFrontTorchButtonA(final View view) {
+    private void animFrontTorchButton(final View view) {
         Animation anim = AnimationUtils.loadAnimation(this, R.anim.image_torch_mirror_left);
-        anim.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                openFrontTorch();
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-
-            }
-        });
         view.startAnimation(anim);
+        openFrontTorch();
     }
 
     private void animBotonOnOff(View view) {
@@ -175,6 +159,22 @@ public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarCha
         } else {
             anim = AnimationUtils.loadAnimation(this, R.anim.boton_off);
         }
+        anim.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                toggleOnOffFlash(isFlashActivated);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
         view.startAnimation(anim);
     }
 
@@ -204,6 +204,7 @@ public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarCha
     private void openFrontTorch() {
         Intent intent = new Intent(getApplicationContext(), FrontTorch.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.appear_from_right_to_left, R.anim.disappear_from_right_to_left);
     }
 
     /**
@@ -257,13 +258,13 @@ public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarCha
     public void toggleOnOffFlash(boolean activated) {
         try {
             manager.setTorchMode(idCamara, activated);
-            if (!checkBox.isChecked()) {
-                if (activated) {
-                    botonOnOff.setImageDrawable(getResources().getDrawable(R.drawable.img_color));
-                } else {
-                    botonOnOff.setImageDrawable(getResources().getDrawable(R.drawable.imagen_desbloqueado));
-                }
-            }
+//            if (!checkBox.isChecked()) {
+//                if (activated) {
+//                    botonOnOff.setImageDrawable(getResources().getDrawable(R.drawable.img_color));
+//                } else {
+//                    botonOnOff.setImageDrawable(getResources().getDrawable(R.drawable.imagen_desbloqueado));
+//                }
+//            }
         } catch (CameraAccessException cae) {
             Log.e(TAG, "Error al acceder a la cámara: " + cae.toString());
         } catch (IllegalArgumentException iae) {

@@ -1,6 +1,12 @@
 <resources>
+
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="small_margin">4dp</dimen>
     <dimen name="medium_margin">8dp</dimen>
     <dimen name="large_margin">16dp</dimen>
+
+    <!-- Animations times -->
+    <integer name="anim_transition">250</integer>
+    <integer name="anim_button_time">100</integer>
+
 </resources>

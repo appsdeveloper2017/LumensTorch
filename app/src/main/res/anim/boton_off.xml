@@ -5,7 +5,7 @@
     android:shareInterpolator="@android:anim/overshoot_interpolator">
 
     <scale
-        android:duration="100"
+        android:duration="@integer/anim_button_time"
         android:fromXScale="0.9"
         android:fromYScale="0.9"
         android:toXScale="1"
