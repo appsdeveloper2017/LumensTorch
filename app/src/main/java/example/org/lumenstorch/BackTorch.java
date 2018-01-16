@@ -17,6 +17,8 @@ import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
@@ -134,14 +136,46 @@ public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarCha
         switch (view.getId()) {
             case R.id.boton:
                 isFlashActivated = !isFlashActivated;
+                animBotonOnOff(view);
                 toggleOnOffFlash(isFlashActivated);
                 break;
             case R.id.toggle_front_back_flash:
-                openFrontTorch();
+                animFrontTorchButtonA(view);
                 break;
             default:
                 break;
         }
+    }
+
+    private void animFrontTorchButtonA(final View view) {
+        Animation anim = AnimationUtils.loadAnimation(this, R.anim.image_torch_mirror_left);
+        anim.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                openFrontTorch();
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+        view.startAnimation(anim);
+    }
+
+    private void animBotonOnOff(View view) {
+        Animation anim;
+        if (isFlashActivated) {
+            anim = AnimationUtils.loadAnimation(this, R.anim.boton_on);
+        } else {
+            anim = AnimationUtils.loadAnimation(this, R.anim.boton_off);
+        }
+        view.startAnimation(anim);
     }
 
     @Override
@@ -170,7 +204,6 @@ public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarCha
     private void openFrontTorch() {
         Intent intent = new Intent(getApplicationContext(), FrontTorch.class);
         startActivity(intent);
-        // TODO: Transición lateral para dar la sensación del cambio de trasera a frontal
     }
 
     /**

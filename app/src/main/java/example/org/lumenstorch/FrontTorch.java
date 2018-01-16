@@ -10,6 +10,8 @@ import android.support.annotation.RequiresApi;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -56,6 +58,8 @@ public class FrontTorch extends AppCompatActivity implements SeekBar.OnSeekBarCh
         botonOnOff.setOnClickListener(this);
         colorSelector.setOnSeekBarChangeListener(this);
 
+        Animation anim = AnimationUtils.loadAnimation(this, R.anim.set_torch_mirror);
+        imgCambioLinterna.startAnimation(anim); // Pone la imagen de la linterna invertida para dar la sensación
         textColorSelector.setText(getResources().getString(R.string.text_color_selector));
         screen.setBackgroundColor(Color.BLACK);
         drawItemsWhite();
@@ -93,14 +97,46 @@ public class FrontTorch extends AppCompatActivity implements SeekBar.OnSeekBarCh
         switch (view.getId()) {
             case R.id.boton:
                 isFlashActivated = !isFlashActivated;
+                animBotonOnOff(view);
                 toggleOnOffScreen(isFlashActivated);
                 break;
             case R.id.toggle_front_back_flash:
-                openBackTorch();
+                animFrontTorchButtonA(view);
                 break;
             default:
                 break;
         }
+    }
+
+    private void animFrontTorchButtonA(final View view) {
+        Animation anim = AnimationUtils.loadAnimation(this, R.anim.image_torch_mirror_right);
+        anim.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                openBackTorch();
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+        view.startAnimation(anim);
+    }
+
+    private void animBotonOnOff(View view) {
+        Animation anim;
+        if (isFlashActivated) {
+            anim = AnimationUtils.loadAnimation(this, R.anim.boton_on);
+        } else {
+            anim = AnimationUtils.loadAnimation(this, R.anim.boton_off);
+        }
+        view.startAnimation(anim);
     }
 
     @Override
@@ -189,7 +225,7 @@ public class FrontTorch extends AppCompatActivity implements SeekBar.OnSeekBarCh
     }
 
     public void toggleOnOffScreen(boolean activated) {
-        if(activated) {
+        if (activated) {
             takeScreenColorFromColorSelector();
         } else {
             screen.setBackgroundColor(Color.BLACK);
