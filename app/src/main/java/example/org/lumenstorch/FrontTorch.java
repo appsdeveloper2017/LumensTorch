@@ -60,7 +60,7 @@ public class FrontTorch extends AppCompatActivity implements SeekBar.OnSeekBarCh
         imgCambioLinterna = (ImageView) findViewById(R.id.toggle_front_back_flash);
         botonOnOff = (ImageView) findViewById(R.id.main_button);
         textColorSelector = (TextView) findViewById(R.id.text_color_selector);
-        linearColorBar = (LinearLayout) findViewById(R.id.linear_color_bar);
+        linearColorBar = (LinearLayout) findViewById(R.id.item_include_color_bar);
         // TODO: Personalizar la barra selectora de color
         colorSelector = (SeekBar) findViewById(R.id.color_selector);
         title = (TextView) findViewById(R.id.title);
