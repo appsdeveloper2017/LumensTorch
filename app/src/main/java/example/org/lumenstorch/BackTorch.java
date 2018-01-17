@@ -27,6 +27,7 @@ import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 
 public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener,
         CompoundButton.OnCheckedChangeListener, View.OnClickListener {
@@ -66,7 +67,7 @@ public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarCha
         setContentView(R.layout.activity_back_torch);
         sharedPreferences = this.getPreferences(Context.MODE_PRIVATE);
 
-        // TODO: Incluir banner publicidad
+        // Add AdMob
         mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
@@ -106,6 +107,8 @@ public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarCha
     protected void onResume() {
         super.onResume();
 
+        mAdView.resume();
+
         Integer valorBarraLumens = recuperarValorActualDePreferencias();
         barraLumens.setMax(MAX - MIN);
         barraLumens.setProgress(valorBarraLumens - MIN);
@@ -114,9 +117,11 @@ public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarCha
 
         if (lightSensor != null) {
             textLightAvailable.setText(getResources().getString(R.string.sensor_disponible));
+            textLightReading.setVisibility(View.VISIBLE);
         } else {
             checkBox.setVisibility(View.INVISIBLE);
             textLightAvailable.setText(getResources().getString(R.string.sensor_no_disponible));
+            textLightReading.setVisibility(View.GONE);
         }
 
         Boolean isChecked = sharedPreferences.getBoolean(VALOR_CHECK_BOX, CHECKBOX_DEF_VALUE);
@@ -132,6 +137,8 @@ public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarCha
     protected void onPause() {
         super.onPause();
 
+        mAdView.pause();
+
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt(VALOR_ACTUAL, barraLumens.getProgress());
         editor.putBoolean(VALOR_CHECK_BOX, checkBox.isChecked());
@@ -139,6 +146,13 @@ public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarCha
 
         toggleOnOffFlash(false);
         mySensorManager.unregisterListener(lightSensorListener);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        mAdView.destroy();
     }
 
     @Override

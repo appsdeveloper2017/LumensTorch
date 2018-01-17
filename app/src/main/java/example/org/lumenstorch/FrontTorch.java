@@ -50,7 +50,7 @@ public class FrontTorch extends AppCompatActivity implements SeekBar.OnSeekBarCh
         setContentView(R.layout.activity_front_torch);
         sharedPreferences = this.getPreferences(Context.MODE_PRIVATE);
 
-        // TODO: Incluir banner publicidad
+        // Add AdMob
         mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
@@ -194,31 +194,24 @@ public class FrontTorch extends AppCompatActivity implements SeekBar.OnSeekBarCh
         switch (seekbarValue) {
             case 0:
                 screen.setBackgroundColor(getResources().getColor(R.color.white));
-//                drawItemsBlack();
                 break;
             case 1:
                 screen.setBackgroundColor(getResources().getColor(R.color.yellow));
-//                drawItemsBlack();
                 break;
             case 2:
                 screen.setBackgroundColor(getResources().getColor(R.color.green));
-//                drawItemsWhite();
                 break;
             case 3:
                 screen.setBackgroundColor(getResources().getColor(R.color.blue));
-//                drawItemsWhite();
                 break;
             case 4:
                 screen.setBackgroundColor(getResources().getColor(R.color.magenta));
-//                drawItemsWhite();
                 break;
             case 5:
                 screen.setBackgroundColor(getResources().getColor(R.color.red));
-//                drawItemsWhite();
                 break;
             default:
                 screen.setBackgroundColor(getResources().getColor(R.color.black));
-//                drawItemsWhite();
                 break;
         }
         drawItemsBlack();
@@ -229,7 +222,7 @@ public class FrontTorch extends AppCompatActivity implements SeekBar.OnSeekBarCh
         botonOnOff.setImageDrawable(getResources().getDrawable(R.drawable.button_unbolcked));
         imgCambioLinterna.setImageDrawable(getResources().getDrawable(R.drawable.linterna_frontal));
         textColorSelector.setTextColor(Color.WHITE);
-        linearColorBar.setBackgroundColor(getResources().getColor(R.color.white));
+        linearColorBar.setBackgroundColor(getResources().getColor(R.color.grey));
     }
 
     private void drawItemsBlack() {
