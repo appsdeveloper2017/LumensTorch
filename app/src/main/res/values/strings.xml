@@ -1,6 +1,9 @@
 <resources>
+
+    <!-- App strings -->
     <string name="app_name">LumensTorch</string>
 
+    <!-- Items strings -->
     <string name="aplicar">Aplicar a:</string>
     <string name="lumens">lm</string>
     <string name="sensor_disponible">(Sensor de luz disponible)</string>
@@ -9,4 +12,11 @@
     <string name="lm_torch">LUMENS TORCH</string>
     <string name="luz_automatica">Luz automatica</string>
     <string name="text_color_selector">Selecciona el color para la pantalla</string>
+
+    <!-- AdMob strings -->
+                <!-- Bueno -->
+    <!--<string name="banner_ad_unit_id">ca-app-pub-5257404653920985~7692796617</string>-->
+                <!-- Prueba -->
+    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544~3347511713</string>
+
 </resources>

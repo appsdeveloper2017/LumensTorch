@@ -13,8 +13,12 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 public class FrontTorch extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener,
         View.OnClickListener {
@@ -34,8 +38,11 @@ public class FrontTorch extends AppCompatActivity implements SeekBar.OnSeekBarCh
     private ImageView imgCambioLinterna;
     private ConstraintLayout screen;
     private TextView title;
+    private LinearLayout linearColorBar;
 
     private boolean isFlashActivated = false;
+
+    private AdView mAdView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,13 +51,16 @@ public class FrontTorch extends AppCompatActivity implements SeekBar.OnSeekBarCh
         sharedPreferences = this.getPreferences(Context.MODE_PRIVATE);
 
         // TODO: Incluir banner publicidad
+        mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         //Casting de elementos.
         screen = (ConstraintLayout) findViewById(R.id.screen);
         imgCambioLinterna = (ImageView) findViewById(R.id.toggle_front_back_flash);
         botonOnOff = (ImageView) findViewById(R.id.main_button);
         textColorSelector = (TextView) findViewById(R.id.text_color_selector);
-        // TODO: Poner colores al selector de color
+        linearColorBar = (LinearLayout) findViewById(R.id.linear_color_bar);
         // TODO: Personalizar la barra selectora de color
         colorSelector = (SeekBar) findViewById(R.id.color_selector);
         title = (TextView) findViewById(R.id.title);
@@ -184,47 +194,50 @@ public class FrontTorch extends AppCompatActivity implements SeekBar.OnSeekBarCh
         switch (seekbarValue) {
             case 0:
                 screen.setBackgroundColor(getResources().getColor(R.color.white));
-                drawItemsBlack();
+//                drawItemsBlack();
                 break;
             case 1:
                 screen.setBackgroundColor(getResources().getColor(R.color.yellow));
-                drawItemsBlack();
+//                drawItemsBlack();
                 break;
             case 2:
                 screen.setBackgroundColor(getResources().getColor(R.color.green));
-                drawItemsWhite();
+//                drawItemsWhite();
                 break;
             case 3:
                 screen.setBackgroundColor(getResources().getColor(R.color.blue));
-                drawItemsWhite();
+//                drawItemsWhite();
                 break;
             case 4:
                 screen.setBackgroundColor(getResources().getColor(R.color.magenta));
-                drawItemsWhite();
+//                drawItemsWhite();
                 break;
             case 5:
                 screen.setBackgroundColor(getResources().getColor(R.color.red));
-                drawItemsWhite();
+//                drawItemsWhite();
                 break;
             default:
                 screen.setBackgroundColor(getResources().getColor(R.color.black));
-                drawItemsWhite();
+//                drawItemsWhite();
                 break;
         }
+        drawItemsBlack();
     }
 
     private void drawItemsWhite() {
         title.setTextColor(Color.WHITE);
-        botonOnOff.setImageDrawable(getResources().getDrawable(R.drawable.imagen_desbloqueado));
+        botonOnOff.setImageDrawable(getResources().getDrawable(R.drawable.button_unbolcked));
         imgCambioLinterna.setImageDrawable(getResources().getDrawable(R.drawable.linterna_frontal));
         textColorSelector.setTextColor(Color.WHITE);
+        linearColorBar.setBackgroundColor(getResources().getColor(R.color.white));
     }
 
     private void drawItemsBlack() {
         title.setTextColor(Color.BLACK);
-        botonOnOff.setImageDrawable(getResources().getDrawable(R.drawable.imagen_black));
+        botonOnOff.setImageDrawable(getResources().getDrawable(R.drawable.button_black));
         imgCambioLinterna.setImageDrawable(getResources().getDrawable(R.drawable.linterna_frontal_black));
         textColorSelector.setTextColor(Color.BLACK);
+        linearColorBar.setBackgroundColor(getResources().getColor(R.color.black));
     }
 
     public void toggleOnOffScreen(boolean activated) {

@@ -25,6 +25,9 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener,
         CompoundButton.OnCheckedChangeListener, View.OnClickListener {
 
@@ -55,6 +58,8 @@ public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarCha
 
     private boolean isFlashActivated = false;
 
+    private AdView mAdView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +67,9 @@ public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarCha
         sharedPreferences = this.getPreferences(Context.MODE_PRIVATE);
 
         // TODO: Incluir banner publicidad
+        mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         //Casting de elementos.
         screen = (ConstraintLayout) findViewById(R.id.screen);
@@ -277,7 +285,7 @@ public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarCha
 
     public void activarManual() {
         botonOnOff.setClickable(true);
-        botonOnOff.setImageDrawable(getResources().getDrawable(R.drawable.imagen_desbloqueado));
+        botonOnOff.setImageDrawable(getResources().getDrawable(R.drawable.button_unbolcked));
         barraLumens.setVisibility(View.INVISIBLE);
         textoMedidaBarra.setVisibility(View.INVISIBLE);
         mySensorManager.unregisterListener(lightSensorListener);
@@ -287,7 +295,7 @@ public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarCha
 
     public void activarAuto() {
         botonOnOff.setClickable(false);
-        botonOnOff.setImageDrawable(getResources().getDrawable(R.drawable.imagen_bloqueado));
+        botonOnOff.setImageDrawable(getResources().getDrawable(R.drawable.button_blocked));
         barraLumens.setVisibility(View.VISIBLE);
         textoMedidaBarra.setVisibility(View.VISIBLE);
         mySensorManager.registerListener(lightSensorListener, lightSensor, SensorManager.SENSOR_DELAY_NORMAL);

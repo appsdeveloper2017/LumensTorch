@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "674145098712",
+    "firebase_url": "https://lumenstorch.firebaseio.com",
+    "project_id": "lumenstorch",
+    "storage_bucket": "lumenstorch.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:674145098712:android:f52195e62ee4a8a9",
+        "android_client_info": {
+          "package_name": "example.org.lumenstorch"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "674145098712-100dlf6p0g0b1ql2i07m9r9rvs33i6cr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "example.org.lumenstorch",
+            "certificate_hash": "f0005ca6d5eab03311011434e95cbc482113e2e8"
+          }
+        },
+        {
+          "client_id": "674145098712-o1r6sejc0j579eb60hmrlaqkmd0horm7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgpWOSxU0ydwtcoOFpE_1eNSHc4yK-WDM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "674145098712-o1r6sejc0j579eb60hmrlaqkmd0horm7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

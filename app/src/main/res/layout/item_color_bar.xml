@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linear_color_bar"
     android:layout_width="@dimen/selector_bar_width"
     android:layout_height="@dimen/selector_bar_height"
     android:background="@color/black"
