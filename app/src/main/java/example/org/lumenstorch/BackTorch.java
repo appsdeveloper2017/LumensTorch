@@ -28,10 +28,13 @@ import android.widget.TextView;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener,
         CompoundButton.OnCheckedChangeListener, View.OnClickListener {
 
+    private AdView mAdView;
+//    private FirebaseAnalytics mFirebaseAnalytics;
     public final String VALOR_ACTUAL = "valorActual";
     public final String VALOR_CHECK_BOX = "valorCheckBox";
     public final String TAG = "Error: ";
@@ -40,10 +43,10 @@ public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarCha
     public final int STRING_DEF_VALUE = -1;
     private final int MIN = 0;
     private final int MAX = 250;
+
     private final int INIT_VALUE = MAX / 2;
 
     private SharedPreferences sharedPreferences;
-
     private ImageView botonOnOff;
     private CameraManager manager;
     private String idCamara;
@@ -55,11 +58,10 @@ public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarCha
     private SensorManager mySensorManager;
     private Sensor lightSensor;
     private ImageView imgLinternaFrontal;
+
     private ConstraintLayout screen;
 
     private boolean isFlashActivated = false;
-
-    private AdView mAdView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +73,8 @@ public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarCha
         mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
+        // Analytics
+//        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         //Casting de elementos.
         screen = (ConstraintLayout) findViewById(R.id.screen);

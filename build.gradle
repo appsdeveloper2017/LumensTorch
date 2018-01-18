@@ -7,13 +7,17 @@ buildscript {
             url 'https://maven.google.com/'
             name 'Google'
         }
+        maven {                                     // Crashlytics
+            url 'https://maven.fabric.io/public'    // Crashlytics
+        }                                           // Crashlytics
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.1'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
-        classpath 'com.google.gms:google-services:3.1.0'
+        classpath 'com.google.gms:google-services:3.1.0'    // Firebase
+        classpath 'io.fabric.tools:gradle:1.24.4'           // Crashlytics
     }
 }
 
@@ -21,7 +25,7 @@ allprojects {
     repositories {
         jcenter()
         maven {
-            url 'https://maven.google.com/'
+            url 'https://maven.google.com/' // Crashlytics
             name 'Google'
         }
     }
