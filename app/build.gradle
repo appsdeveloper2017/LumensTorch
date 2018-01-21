@@ -7,19 +7,15 @@ android {
         applicationId "example.org.lumenstorch"
         minSdkVersion 23
         targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        versionCode 1
+        versionName "0.1-beta"
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-    }
-    defaultConfig {
-        versionCode 1
-        versionName "0.1-beta"
     }
 }
 
