@@ -16,7 +16,7 @@
         android:layout_weight="1"
         android:padding="@dimen/edge"
         android:paddingEnd="@dimen/lateral_edge"
-        android:src="@color/white" />
+        android:src="@color/red" />
 
     <ImageView
         android:id="@+id/colorBarYellow"
@@ -27,7 +27,7 @@
         android:padding="@dimen/edge"
         android:paddingEnd="@dimen/lateral_edge"
         android:paddingStart="@dimen/lateral_edge"
-        android:src="@color/yellow" />
+        android:src="@color/magenta" />
 
     <ImageView
         android:id="@+id/colorBarGreen"
@@ -38,7 +38,7 @@
         android:padding="@dimen/edge"
         android:paddingEnd="@dimen/lateral_edge"
         android:paddingStart="@dimen/lateral_edge"
-        android:src="@color/green" />
+        android:src="@color/blue" />
 
     <ImageView
         android:id="@+id/colorBarBlue"
@@ -49,7 +49,7 @@
         android:padding="@dimen/edge"
         android:paddingEnd="@dimen/lateral_edge"
         android:paddingStart="@dimen/lateral_edge"
-        android:src="@color/blue" />
+        android:src="@color/green" />
 
     <ImageView
         android:id="@+id/colorBarMagenta"
@@ -60,7 +60,7 @@
         android:padding="@dimen/edge"
         android:paddingEnd="@dimen/lateral_edge"
         android:paddingStart="@dimen/lateral_edge"
-        android:src="@color/magenta" />
+        android:src="@color/yellow" />
 
     <ImageView
         android:id="@+id/colorBarRed"
@@ -70,6 +70,6 @@
         android:layout_weight="1"
         android:padding="@dimen/edge"
         android:paddingStart="@dimen/lateral_edge"
-        android:src="@color/red" />
+        android:src="@color/white" />
 
 </LinearLayout>

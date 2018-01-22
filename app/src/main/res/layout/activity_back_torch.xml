@@ -95,11 +95,13 @@
 
         <SeekBar
             android:id="@+id/color_selector"
-            style="@style/Widget.AppCompat.SeekBar.Discrete"
+            style="@android:style/Widget.Holo.SeekBar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/selector_bar_height"
-            android:layout_marginBottom="@dimen/medium_margin"
-            android:layout_marginTop="@dimen/medium_margin" />
+            android:layout_margin="@dimen/medium_margin"
+            android:thumb="@mipmap/seek_thumb"
+            android:progressDrawable="@drawable/progress_seekbar"
+            android:splitTrack="false"/>
 
         <LinearLayout
             android:id="@+id/linearLayout2"

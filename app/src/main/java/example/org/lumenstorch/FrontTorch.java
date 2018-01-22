@@ -193,22 +193,22 @@ public class FrontTorch extends AppCompatActivity implements SeekBar.OnSeekBarCh
 
         switch (seekbarValue) {
             case 0:
-                screen.setBackgroundColor(getResources().getColor(R.color.white));
+                screen.setBackgroundColor(getResources().getColor(R.color.red));
                 break;
             case 1:
-                screen.setBackgroundColor(getResources().getColor(R.color.yellow));
-                break;
-            case 2:
-                screen.setBackgroundColor(getResources().getColor(R.color.green));
-                break;
-            case 3:
-                screen.setBackgroundColor(getResources().getColor(R.color.blue));
-                break;
-            case 4:
                 screen.setBackgroundColor(getResources().getColor(R.color.magenta));
                 break;
+            case 2:
+                screen.setBackgroundColor(getResources().getColor(R.color.blue));
+                break;
+            case 3:
+                screen.setBackgroundColor(getResources().getColor(R.color.green));
+                break;
+            case 4:
+                screen.setBackgroundColor(getResources().getColor(R.color.yellow));
+                break;
             case 5:
-                screen.setBackgroundColor(getResources().getColor(R.color.red));
+                screen.setBackgroundColor(getResources().getColor(R.color.white));
                 break;
             default:
                 screen.setBackgroundColor(getResources().getColor(R.color.black));
