@@ -39,6 +39,12 @@ public class FrontTorch extends AppCompatActivity implements SeekBar.OnSeekBarCh
     private ConstraintLayout screen;
     private TextView title;
     private LinearLayout linearColorBar;
+    private ImageView colorBarRed;
+    private ImageView colorBarMagenta;
+    private ImageView colorBarBlue;
+    private ImageView colorBarGreen;
+    private ImageView colorBarYellow;
+    private ImageView colorBarWhite;
 
     private boolean isFlashActivated = false;
 
@@ -50,12 +56,32 @@ public class FrontTorch extends AppCompatActivity implements SeekBar.OnSeekBarCh
         setContentView(R.layout.activity_front_torch);
         sharedPreferences = this.getPreferences(Context.MODE_PRIVATE);
 
+        init();
+
         // Add AdMob
         mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
-        //Casting de elementos.
+        // Listeners settings
+        imgCambioLinterna.setOnClickListener(this);
+        botonOnOff.setOnClickListener(this);
+        colorSelector.setOnSeekBarChangeListener(this);
+        colorBarRed.setOnClickListener(this);
+        colorBarMagenta.setOnClickListener(this);
+        colorBarBlue.setOnClickListener(this);
+        colorBarGreen.setOnClickListener(this);
+        colorBarYellow.setOnClickListener(this);
+        colorBarWhite.setOnClickListener(this);
+
+        Animation anim = AnimationUtils.loadAnimation(this, R.anim.set_torch_mirror);
+        imgCambioLinterna.startAnimation(anim); // Pone la imagen de la linterna invertida para dar la sensación
+        textColorSelector.setText(getResources().getString(R.string.text_color_selector));
+        screen.setBackgroundColor(Color.BLACK);
+        drawItemsWhite();
+    }
+
+    private void init() {
         screen = (ConstraintLayout) findViewById(R.id.screen);
         imgCambioLinterna = (ImageView) findViewById(R.id.toggle_front_back_flash);
         botonOnOff = (ImageView) findViewById(R.id.main_button);
@@ -65,16 +91,13 @@ public class FrontTorch extends AppCompatActivity implements SeekBar.OnSeekBarCh
         colorSelector = (SeekBar) findViewById(R.id.color_selector);
         title = (TextView) findViewById(R.id.title);
 
-        // Listeners settings
-        imgCambioLinterna.setOnClickListener(this);
-        botonOnOff.setOnClickListener(this);
-        colorSelector.setOnSeekBarChangeListener(this);
+        colorBarRed = (ImageView) findViewById(R.id.colorBarRed);
+        colorBarMagenta = (ImageView) findViewById(R.id.colorBarMagenta);
+        colorBarBlue = (ImageView) findViewById(R.id.colorBarBlue);
+        colorBarGreen = (ImageView) findViewById(R.id.colorBarGreen);
+        colorBarYellow = (ImageView) findViewById(R.id.colorBarYellow);
+        colorBarWhite = (ImageView) findViewById(R.id.colorBarWhite);
 
-        Animation anim = AnimationUtils.loadAnimation(this, R.anim.set_torch_mirror);
-        imgCambioLinterna.startAnimation(anim); // Pone la imagen de la linterna invertida para dar la sensación
-        textColorSelector.setText(getResources().getString(R.string.text_color_selector));
-        screen.setBackgroundColor(Color.BLACK);
-        drawItemsWhite();
     }
 
     /**
@@ -113,6 +136,24 @@ public class FrontTorch extends AppCompatActivity implements SeekBar.OnSeekBarCh
                 break;
             case R.id.toggle_front_back_flash:
                 animFrontTorchButton(view);
+                break;
+            case R.id.colorBarRed:
+                colorSelector.setProgress(0);
+                break;
+            case R.id.colorBarMagenta:
+                colorSelector.setProgress(1);
+                break;
+            case R.id.colorBarBlue:
+                colorSelector.setProgress(2);
+                break;
+            case R.id.colorBarGreen:
+                colorSelector.setProgress(3);
+                break;
+            case R.id.colorBarYellow:
+                colorSelector.setProgress(4);
+                break;
+            case R.id.colorBarWhite:
+                colorSelector.setProgress(5);
                 break;
             default:
                 break;
@@ -236,10 +277,24 @@ public class FrontTorch extends AppCompatActivity implements SeekBar.OnSeekBarCh
     public void toggleOnOffScreen(boolean activated) {
         if (activated) {
             takeScreenColorFromColorSelector();
+            showColorBarItems();
         } else {
             screen.setBackgroundColor(Color.BLACK);
             drawItemsWhite();
+            hideColorBarItems();
         }
+    }
+
+    private void showColorBarItems() {
+        textColorSelector.setVisibility(View.VISIBLE);
+        linearColorBar.setVisibility(View.VISIBLE);
+        colorSelector.setVisibility(View.VISIBLE);
+    }
+
+    private void hideColorBarItems() {
+        textColorSelector.setVisibility(View.GONE);
+        linearColorBar.setVisibility(View.GONE);
+        colorSelector.setVisibility(View.GONE);
     }
 
 }

@@ -14,7 +14,7 @@
             <shape>
                 <corners android:radius="2dip" />
                 <size android:height="2dp"/>
-                <solid android:color="@color/grey" />
+                <solid android:color="@color/green" />
             </shape>
         </clip>
     </item>
@@ -23,7 +23,7 @@
             <shape>
                 <corners android:radius="2dip" />
                 <size android:height="2dp"/>
-                <solid android:color="@color/grey" />
+                <solid android:color="@color/dark_grey" />
             </shape>
         </clip>
     </item>

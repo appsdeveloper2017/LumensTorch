@@ -93,6 +93,18 @@
 
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/textoIndicativo"
+            style="@style/main_activity_text"
+            android:textSize="12sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/large_margin"
+            android:layout_marginEnd="@dimen/large_margin"
+            android:layout_gravity="left"
+            android:gravity="left"
+            android:text="@string/texto_indicativo"/>
+
         <SeekBar
             android:id="@+id/color_selector"
             style="@android:style/Widget.Holo.SeekBar"
@@ -118,6 +130,8 @@
                 android:layout_gravity="center"
                 android:layout_weight="60"
                 android:gravity="center"
+                android:text="@string/sensor_no_disponible"
+                android:visibility="gone"
                 tools:text="@string/sensor_disponible" />
 
             <TextView

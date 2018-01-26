@@ -68,14 +68,18 @@
         <TextView
             android:id="@+id/text_color_selector"
             style="@style/main_activity_text"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/large_margin"
-            tools:text="Selecciona el color para la pantalla" />
+            android:visibility="gone"
+            tools:text="@string/text_color_selector" />
 
         <include
             android:id="@+id/item_include_color_bar"
-            layout="@layout/item_color_bar" />
+            layout="@layout/item_color_bar"
+            android:visibility="gone"/>
 
         <SeekBar
             android:id="@+id/color_selector"
@@ -87,6 +91,7 @@
             android:layout_marginStart="@dimen/selector_bar_margin"
             android:thumb="@mipmap/seek_thumb"
             android:progressDrawable="@drawable/progress_seekbar"
+            android:visibility="gone"
             android:splitTrack="false"/>
 
     </LinearLayout>

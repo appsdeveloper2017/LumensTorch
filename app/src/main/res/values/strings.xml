@@ -8,10 +8,11 @@
     <string name="lumens">lm</string>
     <string name="sensor_disponible">(Sensor de luz disponible)</string>
     <string name="sensor_no_disponible">(Sensor de luz no disponible)</string>
-    <string name="luz">LIGHT: </string>
+    <string name="luz">Lectura sensor: </string>
     <string name="lm_torch">LUMENS TORCH</string>
     <string name="luz_automatica">Luz automatica</string>
-    <string name="text_color_selector">Selecciona el color para la pantalla</string>
+    <string name="text_color_selector">Selecciona el color para la iluminación</string>
+    <string name="texto_indicativo">Selector de sensibilidad del sensor</string>
 
     <!-- AdMob strings -->
                 <!-- Release -->

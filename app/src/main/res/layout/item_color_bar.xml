@@ -9,7 +9,7 @@
     android:orientation="horizontal">
 
     <ImageView
-        android:id="@+id/colorBarWhite"
+        android:id="@+id/colorBarRed"
         android:layout_width="0dp"
         android:layout_height="@dimen/selector_bar_height"
         android:layout_marginBottom="@dimen/large_margin"
@@ -17,39 +17,6 @@
         android:padding="@dimen/edge"
         android:paddingEnd="@dimen/lateral_edge"
         android:src="@color/red" />
-
-    <ImageView
-        android:id="@+id/colorBarYellow"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/selector_bar_height"
-        android:layout_marginBottom="@dimen/large_margin"
-        android:layout_weight="1"
-        android:padding="@dimen/edge"
-        android:paddingEnd="@dimen/lateral_edge"
-        android:paddingStart="@dimen/lateral_edge"
-        android:src="@color/magenta" />
-
-    <ImageView
-        android:id="@+id/colorBarGreen"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/selector_bar_height"
-        android:layout_marginBottom="@dimen/large_margin"
-        android:layout_weight="1"
-        android:padding="@dimen/edge"
-        android:paddingEnd="@dimen/lateral_edge"
-        android:paddingStart="@dimen/lateral_edge"
-        android:src="@color/blue" />
-
-    <ImageView
-        android:id="@+id/colorBarBlue"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/selector_bar_height"
-        android:layout_marginBottom="@dimen/large_margin"
-        android:layout_weight="1"
-        android:padding="@dimen/edge"
-        android:paddingEnd="@dimen/lateral_edge"
-        android:paddingStart="@dimen/lateral_edge"
-        android:src="@color/green" />
 
     <ImageView
         android:id="@+id/colorBarMagenta"
@@ -60,10 +27,43 @@
         android:padding="@dimen/edge"
         android:paddingEnd="@dimen/lateral_edge"
         android:paddingStart="@dimen/lateral_edge"
+        android:src="@color/magenta" />
+
+    <ImageView
+        android:id="@+id/colorBarBlue"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/selector_bar_height"
+        android:layout_marginBottom="@dimen/large_margin"
+        android:layout_weight="1"
+        android:padding="@dimen/edge"
+        android:paddingEnd="@dimen/lateral_edge"
+        android:paddingStart="@dimen/lateral_edge"
+        android:src="@color/blue" />
+
+    <ImageView
+        android:id="@+id/colorBarGreen"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/selector_bar_height"
+        android:layout_marginBottom="@dimen/large_margin"
+        android:layout_weight="1"
+        android:padding="@dimen/edge"
+        android:paddingEnd="@dimen/lateral_edge"
+        android:paddingStart="@dimen/lateral_edge"
+        android:src="@color/green" />
+
+    <ImageView
+        android:id="@+id/colorBarYellow"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/selector_bar_height"
+        android:layout_marginBottom="@dimen/large_margin"
+        android:layout_weight="1"
+        android:padding="@dimen/edge"
+        android:paddingEnd="@dimen/lateral_edge"
+        android:paddingStart="@dimen/lateral_edge"
         android:src="@color/yellow" />
 
     <ImageView
-        android:id="@+id/colorBarRed"
+        android:id="@+id/colorBarWhite"
         android:layout_width="0dp"
         android:layout_height="@dimen/selector_bar_height"
         android:layout_marginBottom="@dimen/large_margin"

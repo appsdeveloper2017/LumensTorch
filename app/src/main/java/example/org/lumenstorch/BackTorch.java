@@ -33,6 +33,7 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener,
         CompoundButton.OnCheckedChangeListener, View.OnClickListener {
 
+    public static final String LUMENS = "lumens";
     private AdView mAdView;
 //    private FirebaseAnalytics mFirebaseAnalytics;
     public final String VALOR_ACTUAL = "valorActual";
@@ -58,6 +59,7 @@ public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarCha
     private SensorManager mySensorManager;
     private Sensor lightSensor;
     private ImageView imgLinternaFrontal;
+    private TextView textoIndicativo;
 
     private ConstraintLayout screen;
 
@@ -73,20 +75,8 @@ public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarCha
         mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
-        // Analytics
-//        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
-        //Casting de elementos.
-        screen = (ConstraintLayout) findViewById(R.id.screen);
-        imgLinternaFrontal = (ImageView) findViewById(R.id.toggle_front_back_flash);
-        botonOnOff = (ImageView) findViewById(R.id.main_button);
-        textLightAvailable = (TextView) findViewById(R.id.LIGHT_available);
-        textLightReading = (TextView) findViewById(R.id.LIGHT_reading);
-        textoMedidaBarra = (TextView) findViewById(R.id.muestrabarra);
-        checkBox = (CheckBox) findViewById(R.id.automatic);
-        barraLumens = (SeekBar) findViewById(R.id.color_selector);
-        manager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
-        mySensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        init();
 
         try {
             idCamara = manager.getCameraIdList()[0];
@@ -102,6 +92,20 @@ public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarCha
         lightSensor = mySensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
 
         screen.setBackgroundColor(Color.BLACK);
+    }
+
+    private void init() {
+        screen = (ConstraintLayout) findViewById(R.id.screen);
+        imgLinternaFrontal = (ImageView) findViewById(R.id.toggle_front_back_flash);
+        botonOnOff = (ImageView) findViewById(R.id.main_button);
+        textLightAvailable = (TextView) findViewById(R.id.LIGHT_available);
+        textLightReading = (TextView) findViewById(R.id.LIGHT_reading);
+        textoMedidaBarra = (TextView) findViewById(R.id.muestrabarra);
+        checkBox = (CheckBox) findViewById(R.id.automatic);
+        barraLumens = (SeekBar) findViewById(R.id.color_selector);
+        manager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
+        mySensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        textoIndicativo = (TextView) findViewById(R.id.textoIndicativo);
     }
 
     /**
@@ -120,12 +124,12 @@ public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarCha
                 + SPACE + valorBarraLumens + SPACE + getResources().getString(R.string.lumens));
 
         if (lightSensor != null) {
-            textLightAvailable.setText(getResources().getString(R.string.sensor_disponible));
+            textLightAvailable.setVisibility(View.GONE);
             textLightReading.setVisibility(View.VISIBLE);
         } else {
             checkBox.setVisibility(View.INVISIBLE);
-            textLightAvailable.setText(getResources().getString(R.string.sensor_no_disponible));
-            textLightReading.setVisibility(View.GONE);
+            textLightAvailable.setVisibility(View.VISIBLE);
+            textLightReading.setVisibility(View.INVISIBLE);
         }
 
         Boolean isChecked = sharedPreferences.getBoolean(VALOR_CHECK_BOX, CHECKBOX_DEF_VALUE);
@@ -261,7 +265,7 @@ public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarCha
         public void onSensorChanged(SensorEvent event) {
             if (event.sensor.getType() == Sensor.TYPE_LIGHT) {
                 Float luz = event.values[0];
-                textLightReading.setText(getResources().getString(R.string.luz) + luz.toString());
+                textLightReading.setText(getResources().getString(R.string.luz) + SPACE + luz.toString() + SPACE + LUMENS);
                 compararLuz(barraLumens.getProgress(), luz);
             }
         }
@@ -305,8 +309,10 @@ public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarCha
         botonOnOff.setClickable(true);
         botonOnOff.setImageDrawable(getResources().getDrawable(R.drawable.button_unbolcked));
         barraLumens.setVisibility(View.INVISIBLE);
+        textoIndicativo.setVisibility(View.INVISIBLE);
         textoMedidaBarra.setVisibility(View.INVISIBLE);
         mySensorManager.unregisterListener(lightSensorListener);
+        textLightReading.setVisibility(View.INVISIBLE);
         isFlashActivated = false;
         toggleOnOffFlash(isFlashActivated);
     }
@@ -315,6 +321,8 @@ public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarCha
         botonOnOff.setClickable(false);
         botonOnOff.setImageDrawable(getResources().getDrawable(R.drawable.button_blocked));
         barraLumens.setVisibility(View.VISIBLE);
+        textoIndicativo.setVisibility(View.VISIBLE);
+        textLightReading.setVisibility(View.VISIBLE);
         textoMedidaBarra.setVisibility(View.VISIBLE);
         mySensorManager.registerListener(lightSensorListener, lightSensor, SensorManager.SENSOR_DELAY_NORMAL);
     }
