@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/screen"
     android:layout_width="match_parent"
@@ -31,18 +31,31 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:context=".BackTorch" />
+        tools:context=".BackTorch"/>
 
-    <ImageView
-        android:id="@+id/toggle_front_back_flash"
-        android:layout_width="@dimen/torch_button_width"
-        android:layout_height="@dimen/torch_button_height"
-        android:layout_marginEnd="@dimen/medium_margin"
-        android:layout_marginTop="@dimen/medium_margin"
-        android:src="@drawable/linterna_frontal"
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title"
-        app:srcCompat="@drawable/linterna_frontal" />
+        app:layout_constraintTop_toBottomOf="@+id/title">
+
+        <ImageView
+            android:id="@+id/toggle_front_back_flash"
+            android:layout_width="@dimen/torch_button_width"
+            android:layout_height="@dimen/torch_button_height"
+            android:layout_marginTop="@dimen/medium_margin"
+            android:src="@mipmap/cambio_linterna"/>
+
+        <TextView
+            android:id="@+id/text_toggle_front_back_flash"
+            style="@style/text_small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/girar"/>
+
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/main_button"
@@ -53,7 +66,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/button_unbolcked" />
+        app:srcCompat="@drawable/button_unbolcked"/>
 
     <LinearLayout
         android:id="@+id/backLinearLayout"
@@ -79,7 +92,7 @@
                 android:layout_marginEnd="1dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical|left"
-                android:text="@string/luz_automatica" />
+                android:text="@string/luz_automatica"/>
 
             <TextView
                 android:id="@+id/muestrabarra"
@@ -89,19 +102,18 @@
                 android:layout_gravity="center"
                 android:layout_weight="1 "
                 android:gravity="center"
-                tools:text="@string/aplicar" />
+                tools:text="@string/aplicar"/>
 
         </LinearLayout>
 
         <TextView
             android:id="@+id/textoIndicativo"
-            style="@style/main_activity_text"
-            android:textSize="12sp"
+            style="@style/text_small"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/large_margin"
-            android:layout_marginEnd="@dimen/large_margin"
             android:layout_gravity="left"
+            android:layout_marginEnd="@dimen/large_margin"
+            android:layout_marginStart="@dimen/large_margin"
             android:gravity="left"
             android:text="@string/texto_indicativo"/>
 
@@ -111,9 +123,9 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/selector_bar_height"
             android:layout_margin="@dimen/medium_margin"
-            android:thumb="@mipmap/seek_thumb"
             android:progressDrawable="@drawable/progress_seekbar"
-            android:splitTrack="false"/>
+            android:splitTrack="false"
+            android:thumb="@mipmap/seek_thumb"/>
 
         <LinearLayout
             android:id="@+id/linearLayout2"
@@ -125,23 +137,21 @@
             <TextView
                 android:id="@+id/LIGHT_available"
                 style="@style/main_activity_text"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight="60"
                 android:gravity="center"
                 android:text="@string/sensor_no_disponible"
                 android:visibility="gone"
-                tools:text="@string/sensor_disponible" />
+                tools:text="@string/sensor_disponible"/>
 
             <TextView
                 android:id="@+id/LIGHT_reading"
                 style="@style/main_activity_text"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight="40"
-                tools:text="@string/luz" />
+                tools:text="@string/luz"/>
 
         </LinearLayout>
 
@@ -151,12 +161,12 @@
         android:id="@+id/adView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:layout_gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:background="@color/black"
         ads:adSize="BANNER"
-        ads:adUnitId="@string/banner_ad_unit_id" />
+        ads:adUnitId="@string/banner_ad_unit_id"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>

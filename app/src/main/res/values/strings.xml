@@ -13,6 +13,7 @@
     <string name="luz_automatica">Luz automatica</string>
     <string name="text_color_selector">Selecciona el color para la iluminación</string>
     <string name="texto_indicativo">Selector de sensibilidad del sensor</string>
+    <string name="girar">Girar</string>
 
     <!-- AdMob strings -->
                 <!-- Release -->

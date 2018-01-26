@@ -129,7 +129,7 @@ public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarCha
         } else {
             checkBox.setVisibility(View.INVISIBLE);
             textLightAvailable.setVisibility(View.VISIBLE);
-            textLightReading.setVisibility(View.INVISIBLE);
+            textLightReading.setVisibility(View.GONE);
         }
 
         Boolean isChecked = sharedPreferences.getBoolean(VALOR_CHECK_BOX, CHECKBOX_DEF_VALUE);

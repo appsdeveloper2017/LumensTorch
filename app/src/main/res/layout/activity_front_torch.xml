@@ -31,28 +31,42 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:context=".BackTorch" />
+        tools:context=".BackTorch"/>
 
-    <ImageView
-        android:id="@+id/toggle_front_back_flash"
-        android:layout_width="@dimen/torch_button_width"
-        android:layout_height="@dimen/torch_button_height"
-        android:layout_marginEnd="@dimen/medium_margin"
-        android:layout_marginTop="@dimen/medium_margin"
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title"
-        app:srcCompat="@drawable/linterna_frontal" />
+        app:layout_constraintTop_toBottomOf="@+id/title">
+
+        <ImageView
+            android:id="@+id/toggle_front_back_flash"
+            android:layout_width="@dimen/torch_button_width"
+            android:layout_height="@dimen/torch_button_height"
+            android:layout_marginTop="@dimen/medium_margin"
+            android:src="@mipmap/cambio_linterna"/>
+
+        <TextView
+            android:id="@+id/text_toggle_front_back_flash"
+            style="@style/text_small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/girar"/>
+
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/main_button"
         android:layout_width="@dimen/main_button"
         android:layout_height="@dimen/main_button"
         android:layout_weight="1"
+        ads:srcCompat="@drawable/button_unbolcked"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        ads:srcCompat="@drawable/button_unbolcked"/>
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <LinearLayout
         android:id="@+id/frontLinearLayout"
@@ -68,13 +82,13 @@
         <TextView
             android:id="@+id/text_color_selector"
             style="@style/main_activity_text"
-            android:layout_gravity="center"
-            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginBottom="@dimen/large_margin"
+            android:gravity="center"
             android:visibility="gone"
-            tools:text="@string/text_color_selector" />
+            tools:text="@string/text_color_selector"/>
 
         <include
             android:id="@+id/item_include_color_bar"
@@ -89,10 +103,10 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginEnd="@dimen/selector_bar_margin"
             android:layout_marginStart="@dimen/selector_bar_margin"
-            android:thumb="@mipmap/seek_thumb"
             android:progressDrawable="@drawable/progress_seekbar"
-            android:visibility="gone"
-            android:splitTrack="false"/>
+            android:splitTrack="false"
+            android:thumb="@mipmap/seek_thumb"
+            android:visibility="gone"/>
 
     </LinearLayout>
 
@@ -100,11 +114,11 @@
         android:id="@+id/adView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        ads:layout_constraintBottom_toBottomOf="parent"
+        android:layout_centerHorizontal="true"
         android:background="@color/black"
         ads:adSize="BANNER"
-        ads:adUnitId="@string/banner_ad_unit_id" />
+        ads:adUnitId="@string/banner_ad_unit_id"
+        ads:layout_constraintBottom_toBottomOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>

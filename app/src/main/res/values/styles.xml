@@ -18,4 +18,8 @@
         <item name="android:textSize">@dimen/text</item>
     </style>
 
+    <style name="text_small" parent="main_activity_text">
+        <item name="android:textSize">@dimen/text_small</item>
+    </style>
+
 </resources>

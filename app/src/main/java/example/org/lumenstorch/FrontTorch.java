@@ -261,7 +261,7 @@ public class FrontTorch extends AppCompatActivity implements SeekBar.OnSeekBarCh
     private void drawItemsWhite() {
         title.setTextColor(Color.WHITE);
         botonOnOff.setImageDrawable(getResources().getDrawable(R.drawable.button_unbolcked));
-        imgCambioLinterna.setImageDrawable(getResources().getDrawable(R.drawable.linterna_frontal));
+        imgCambioLinterna.setImageDrawable(getResources().getDrawable(R.mipmap.cambio_linterna));
         textColorSelector.setTextColor(Color.WHITE);
         linearColorBar.setBackgroundColor(getResources().getColor(R.color.grey));
     }
@@ -269,7 +269,7 @@ public class FrontTorch extends AppCompatActivity implements SeekBar.OnSeekBarCh
     private void drawItemsBlack() {
         title.setTextColor(Color.BLACK);
         botonOnOff.setImageDrawable(getResources().getDrawable(R.drawable.button_black));
-        imgCambioLinterna.setImageDrawable(getResources().getDrawable(R.drawable.linterna_frontal_black));
+        imgCambioLinterna.setImageDrawable(getResources().getDrawable(R.mipmap.cambio_linterna_black));
         textColorSelector.setTextColor(Color.BLACK);
         linearColorBar.setBackgroundColor(getResources().getColor(R.color.black));
     }
