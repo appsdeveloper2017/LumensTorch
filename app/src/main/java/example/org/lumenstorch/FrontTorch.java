@@ -45,6 +45,7 @@ public class FrontTorch extends AppCompatActivity implements SeekBar.OnSeekBarCh
     private ImageView colorBarGreen;
     private ImageView colorBarYellow;
     private ImageView colorBarWhite;
+    private TextView textoIndicativo;
 
     private boolean isFlashActivated = false;
 
@@ -90,6 +91,7 @@ public class FrontTorch extends AppCompatActivity implements SeekBar.OnSeekBarCh
         // TODO: Personalizar la barra selectora de color
         colorSelector = (SeekBar) findViewById(R.id.color_selector);
         title = (TextView) findViewById(R.id.title);
+        textoIndicativo = (TextView) findViewById(R.id.text_toggle_front_back_flash);
 
         colorBarRed = (ImageView) findViewById(R.id.colorBarRed);
         colorBarMagenta = (ImageView) findViewById(R.id.colorBarMagenta);
@@ -264,6 +266,7 @@ public class FrontTorch extends AppCompatActivity implements SeekBar.OnSeekBarCh
         imgCambioLinterna.setImageDrawable(getResources().getDrawable(R.mipmap.cambio_linterna));
         textColorSelector.setTextColor(Color.WHITE);
         linearColorBar.setBackgroundColor(getResources().getColor(R.color.grey));
+        textoIndicativo.setTextColor(getResources().getColor(R.color.blue));
     }
 
     private void drawItemsBlack() {
@@ -272,6 +275,7 @@ public class FrontTorch extends AppCompatActivity implements SeekBar.OnSeekBarCh
         imgCambioLinterna.setImageDrawable(getResources().getDrawable(R.mipmap.cambio_linterna_black));
         textColorSelector.setTextColor(Color.BLACK);
         linearColorBar.setBackgroundColor(getResources().getColor(R.color.black));
+        textoIndicativo.setTextColor(getResources().getColor(R.color.black));
     }
 
     public void toggleOnOffScreen(boolean activated) {

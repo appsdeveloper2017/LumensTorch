@@ -33,7 +33,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:context=".BackTorch"/>
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -45,6 +45,8 @@
             android:layout_width="@dimen/torch_button_width"
             android:layout_height="@dimen/torch_button_height"
             android:layout_marginTop="@dimen/medium_margin"
+            ads:layout_constraintTop_toBottomOf="parent"
+            ads:layout_constraintEnd_toEndOf="parent"
             android:src="@mipmap/cambio_linterna"/>
 
         <TextView
@@ -52,10 +54,13 @@
             style="@style/text_small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/girar"/>
+            android:gravity="center_horizontal"
+            ads:layout_constraintTop_toBottomOf="@+id/toggle_front_back_flash"
+            ads:layout_constraintEnd_toEndOf="@+id/toggle_front_back_flash"
+            android:ellipsize="end"
+            android:text="@string/cambiar_pantalla"/>
 
-    </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
 
     <ImageView
         android:id="@+id/main_button"

@@ -7,8 +7,8 @@
 
     <!-- Items dimensions -->
     <dimen name="main_button">200dp</dimen>
-    <dimen name="torch_button_width">45dp</dimen>
-    <dimen name="torch_button_height">48dp</dimen>
+    <dimen name="torch_button_width">42dp</dimen>
+    <dimen name="torch_button_height">42dp</dimen>
     <dimen name="title">25sp</dimen>
     <dimen name="text">15sp</dimen>
     <dimen name="text_small">12sp</dimen>
