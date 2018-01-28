@@ -166,12 +166,11 @@
         android:id="@+id/adView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center"
         android:background="@color/black"
         ads:adSize="BANNER"
-        ads:adUnitId="@string/banner_ad_unit_id"
+        ads:adUnitId="@string/id_banner_back"
+        ads:layout_constraintStart_toStartOf="parent"
+        ads:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>

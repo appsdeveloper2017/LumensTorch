@@ -15,14 +15,6 @@
       },
       "oauth_client": [
         {
-          "client_id": "674145098712-celde6keqtcoknead71utcp6bubsm6ug.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "example.org.lumenstorch",
-            "certificate_hash": "7f1d6943ef48097a3732ceb54370315a03b04481"
-          }
-        },
-        {
           "client_id": "674145098712-100dlf6p0g0b1ql2i07m9r9rvs33i6cr.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

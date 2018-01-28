@@ -28,14 +28,15 @@ import android.widget.TextView;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
-import com.google.firebase.analytics.FirebaseAnalytics;
 
 public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener,
         CompoundButton.OnCheckedChangeListener, View.OnClickListener {
 
     public static final String LUMENS = "lumens";
+//    public static final String ID_APP_ADMOB = "ca-app-pub-3940256099942544~3347511713"; // Debug
+    public static final String ID_APP_ADMOB = "ca-app-pub-5257404653920985~7692796617"; // Reslease
     private AdView mAdView;
-//    private FirebaseAnalytics mFirebaseAnalytics;
+    //    private FirebaseAnalytics mFirebaseAnalytics;
     public final String VALOR_ACTUAL = "valorActual";
     public final String VALOR_CHECK_BOX = "valorCheckBox";
     public final String TAG = "Error: ";
@@ -54,6 +55,7 @@ public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarCha
     private TextView textLightAvailable;
     private TextView textLightReading;
     private TextView textoMedidaBarra;
+    private TextView textoCambioLinterna;
     private SeekBar barraLumens;
     private CheckBox checkBox;
     private SensorManager mySensorManager;
@@ -72,6 +74,7 @@ public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarCha
         sharedPreferences = this.getPreferences(Context.MODE_PRIVATE);
 
         // Add AdMob
+        MobileAds.initialize(this, ID_APP_ADMOB);
         mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
@@ -86,6 +89,7 @@ public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarCha
 
         // Listeners settings
         imgLinternaFrontal.setOnClickListener(this);
+        textoCambioLinterna.setOnClickListener(this);
         botonOnOff.setOnClickListener(this);
         checkBox.setOnCheckedChangeListener(this);
         barraLumens.setOnSeekBarChangeListener(this);
@@ -171,6 +175,7 @@ public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarCha
                 animBotonOnOff(view);
                 break;
             case R.id.toggle_front_back_flash:
+            case R.id.text_toggle_front_back_flash:
                 animFrontTorchButton(view);
                 break;
             default:

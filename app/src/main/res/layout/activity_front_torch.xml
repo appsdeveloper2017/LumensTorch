@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -31,7 +30,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:context=".BackTorch"/>
+        tools:context=".BackTorch" />
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="wrap_content"
@@ -45,22 +44,22 @@
             android:layout_width="@dimen/torch_button_width"
             android:layout_height="@dimen/torch_button_height"
             android:layout_marginTop="@dimen/medium_margin"
-            ads:layout_constraintTop_toBottomOf="parent"
+            android:src="@mipmap/cambio_linterna"
             ads:layout_constraintEnd_toEndOf="parent"
-            android:src="@mipmap/cambio_linterna"/>
+            ads:layout_constraintTop_toBottomOf="parent" />
 
         <TextView
             android:id="@+id/text_toggle_front_back_flash"
             style="@style/text_small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            ads:layout_constraintTop_toBottomOf="@+id/toggle_front_back_flash"
-            ads:layout_constraintStart_toStartOf="@+id/toggle_front_back_flash"
-            ads:layout_constraintEnd_toEndOf="@+id/toggle_front_back_flash"
-            android:lines="2"
             android:ellipsize="end"
-            android:text="@string/cambiar_flash"/>
+            android:gravity="center_horizontal"
+            android:lines="2"
+            android:text="@string/cambiar_flash"
+            ads:layout_constraintEnd_toEndOf="@+id/toggle_front_back_flash"
+            ads:layout_constraintStart_toStartOf="@+id/toggle_front_back_flash"
+            ads:layout_constraintTop_toBottomOf="@+id/toggle_front_back_flash" />
 
     </android.support.constraint.ConstraintLayout>
 
@@ -73,7 +72,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/frontLinearLayout"
@@ -95,12 +94,12 @@
             android:layout_marginBottom="@dimen/large_margin"
             android:gravity="center"
             android:visibility="gone"
-            tools:text="@string/text_color_selector"/>
+            tools:text="@string/text_color_selector" />
 
         <include
             android:id="@+id/item_include_color_bar"
             layout="@layout/item_color_bar"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <SeekBar
             android:id="@+id/color_selector"
@@ -113,7 +112,7 @@
             android:progressDrawable="@drawable/progress_seekbar"
             android:splitTrack="false"
             android:thumb="@mipmap/seek_thumb"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
     </LinearLayout>
 
@@ -125,7 +124,9 @@
         android:layout_centerHorizontal="true"
         android:background="@color/black"
         ads:adSize="BANNER"
-        ads:adUnitId="@string/banner_ad_unit_id"
-        ads:layout_constraintBottom_toBottomOf="parent"/>
+        ads:adUnitId="@string/id_banner_front"
+        ads:layout_constraintBottom_toBottomOf="parent"
+        ads:layout_constraintEnd_toEndOf="parent"
+        ads:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

@@ -3,14 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     package="example.org.lumenstorch">
 
-    <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.FLASHLIGHT"/>
     <uses-permission android:name="android.permission.INTERNET"/>
 
-    <!-- Si no tiene cámara y flash no permitirá la instalación -->
-    <uses-feature
-        android:name="android.hardware.camera2"
-        android:required="true"/>
+    <!-- Si no tiene flash no permitirá la instalación -->
     <uses-feature
         android:name="android.hardware.camera.flash"
         android:required="true"/>

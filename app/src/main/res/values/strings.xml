@@ -17,10 +17,9 @@
     <string name="cambiar_pantalla">Pantalla</string>
 
     <!-- AdMob strings -->
-                <!-- Release -->
-    <!--<string name="banner_ad_unit_id">ca-app-pub-5257404653920985~7692796617</string>-->
-                <!-- Debug/test -->
-    <!--<string name="admob_app_id">ca-app-pub-3940256099942544~3347511713</string>-->
-    <!--<string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>-->
+    <!-- Release -->
+    <!--<string name="id_app_admob">ca-app-pub-5257404653920985~7692796617</string>-->
+    <!-- Debug/test -->
+    <string name="id_app_admob">ca-app-pub-3940256099942544~3347511713</string>
 
 </resources>

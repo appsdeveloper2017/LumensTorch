@@ -2,6 +2,8 @@
 <resources>
 
     <string name="lm_torch">LUMENS TORCH</string>
-    <string name="banner_ad_unit_id">ca-app-pub-5257404653920985~7692796617</string>
+    <string name="id_app_admob">ca-app-pub-5257404653920985~7692796617</string>
+    <string name="id_banner_back">ca-app-pub-5257404653920985/3809391924</string>
+    <string name="id_banner_front">ca-app-pub-5257404653920985/7006281739</string>
 
 </resources>

@@ -9,7 +9,7 @@ android {
         targetSdkVersion 23
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         versionCode 1
-        versionName "0.1-beta"
+        versionName "1.01"
     }
     buildTypes {
         release {

@@ -2,6 +2,8 @@
 <resources>
 
     <string name="lm_torch">LUMENS TORCH(debbug)</string>
-    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="id_app_admob">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="id_banner_back">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="id_banner_front">ca-app-pub-3940256099942544/6300978111</string>
 
 </resources>
