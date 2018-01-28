@@ -33,34 +33,47 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:context=".BackTorch"/>
 
-    <android.support.constraint.ConstraintLayout
+    <!--<android.support.constraint.ConstraintLayout-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="vertical"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/title">-->
+
+    <TextView
+        android:id="@+id/text_sos"
+        style="@style/text_small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title">
+        android:ellipsize="end"
+        android:gravity="center_horizontal"
+        android:lines="2"
+        android:layout_marginTop="@dimen/large_margin"
+        android:text="@string/sos"
+        ads:layout_constraintStart_toStartOf="parent"
+        ads:layout_constraintTop_toBottomOf="@+id/title" />
 
-        <ImageView
-            android:id="@+id/toggle_front_back_flash"
+    <ImageView
+            android:id="@+id/toggle_front_flash"
             android:layout_width="@dimen/torch_button_width"
             android:layout_height="@dimen/torch_button_height"
             android:layout_marginTop="@dimen/medium_margin"
-            ads:layout_constraintTop_toBottomOf="parent"
+            ads:layout_constraintTop_toBottomOf="@id/title"
             ads:layout_constraintEnd_toEndOf="parent"
             android:src="@mipmap/cambio_linterna"/>
 
         <TextView
-            android:id="@+id/text_toggle_front_back_flash"
+            android:id="@+id/text_toggle_front_flash"
             style="@style/text_small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            ads:layout_constraintTop_toBottomOf="@+id/toggle_front_back_flash"
-            ads:layout_constraintEnd_toEndOf="@+id/toggle_front_back_flash"
+            ads:layout_constraintTop_toBottomOf="@+id/toggle_front_flash"
+            ads:layout_constraintEnd_toEndOf="@+id/toggle_front_flash"
             android:ellipsize="end"
             android:text="@string/cambiar_pantalla"/>
 
-    </android.support.constraint.ConstraintLayout>
+    <!--</android.support.constraint.ConstraintLayout>-->
 
     <ImageView
         android:id="@+id/main_button"

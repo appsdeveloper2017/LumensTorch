@@ -33,10 +33,9 @@ public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarCha
         CompoundButton.OnCheckedChangeListener, View.OnClickListener {
 
     public static final String LUMENS = "lumens";
-//    public static final String ID_APP_ADMOB = "ca-app-pub-3940256099942544~3347511713"; // Debug
-    public static final String ID_APP_ADMOB = "ca-app-pub-5257404653920985~7692796617"; // Reslease
+    public static final String ID_APP_ADMOB = "ca-app-pub-3940256099942544~3347511713"; // Debug
+//    public static final String ID_APP_ADMOB = "ca-app-pub-5257404653920985~7692796617"; // Reslease
     private AdView mAdView;
-    //    private FirebaseAnalytics mFirebaseAnalytics;
     public final String VALOR_ACTUAL = "valorActual";
     public final String VALOR_CHECK_BOX = "valorCheckBox";
     public final String TAG = "Error: ";
@@ -62,6 +61,7 @@ public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarCha
     private Sensor lightSensor;
     private ImageView imgLinternaFrontal;
     private TextView textoIndicativo;
+    private TextView textoSOS;
 
     private ConstraintLayout screen;
 
@@ -90,6 +90,7 @@ public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarCha
         // Listeners settings
         imgLinternaFrontal.setOnClickListener(this);
         textoCambioLinterna.setOnClickListener(this);
+        textoSOS.setOnClickListener(this);
         botonOnOff.setOnClickListener(this);
         checkBox.setOnCheckedChangeListener(this);
         barraLumens.setOnSeekBarChangeListener(this);
@@ -100,7 +101,7 @@ public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarCha
 
     private void init() {
         screen = (ConstraintLayout) findViewById(R.id.screen);
-        imgLinternaFrontal = (ImageView) findViewById(R.id.toggle_front_back_flash);
+        imgLinternaFrontal = (ImageView) findViewById(R.id.toggle_front_flash);
         botonOnOff = (ImageView) findViewById(R.id.main_button);
         textLightAvailable = (TextView) findViewById(R.id.LIGHT_available);
         textLightReading = (TextView) findViewById(R.id.LIGHT_reading);
@@ -110,6 +111,8 @@ public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarCha
         manager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
         mySensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         textoIndicativo = (TextView) findViewById(R.id.textoIndicativo);
+        textoCambioLinterna = (TextView) findViewById(R.id.text_toggle_front_flash);
+        textoSOS = (TextView) findViewById(R.id.text_sos);
     }
 
     /**
@@ -174,12 +177,66 @@ public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarCha
                 isFlashActivated = !isFlashActivated;
                 animBotonOnOff(view);
                 break;
-            case R.id.toggle_front_back_flash:
-            case R.id.text_toggle_front_back_flash:
+            case R.id.toggle_front_flash:
+            case R.id.text_toggle_front_flash:
                 animFrontTorchButton(view);
+                break;
+            case R.id.text_sos:
+                sendSOS();
                 break;
             default:
                 break;
+        }
+    }
+
+    private void sendSOS() {
+        try {
+            // S
+            toggleOnOffFlash(true);
+            Thread.sleep(100);
+            toggleOnOffFlash(false);
+            Thread.sleep(100);
+            toggleOnOffFlash(true);
+            Thread.sleep(100);
+            toggleOnOffFlash(false);
+            Thread.sleep(100);
+            toggleOnOffFlash(true);
+            Thread.sleep(100);
+            toggleOnOffFlash(false);
+            Thread.sleep(100);
+
+            // O
+            toggleOnOffFlash(true);
+            Thread.sleep(1000);
+            toggleOnOffFlash(false);
+            Thread.sleep(100);
+            toggleOnOffFlash(true);
+            toggleOnOffFlash(true);
+            Thread.sleep(1000);
+            toggleOnOffFlash(false);
+            Thread.sleep(100);
+            toggleOnOffFlash(true);
+            toggleOnOffFlash(true);
+            Thread.sleep(1000);
+            toggleOnOffFlash(false);
+            Thread.sleep(100);
+            toggleOnOffFlash(true);
+
+            // S
+            toggleOnOffFlash(true);
+            Thread.sleep(100);
+            toggleOnOffFlash(false);
+            Thread.sleep(100);
+            toggleOnOffFlash(true);
+            Thread.sleep(100);
+            toggleOnOffFlash(false);
+            Thread.sleep(100);
+            toggleOnOffFlash(true);
+            Thread.sleep(100);
+            toggleOnOffFlash(false);
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
