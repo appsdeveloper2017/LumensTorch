@@ -1,0 +1,26 @@
+<resources>
+
+    <!-- App strings -->
+    <string name="app_name">LumensTorch</string>
+
+    <!-- Items strings -->
+    <string name="aplicar">Apply to:</string>
+    <string name="lumens">lm</string>
+    <string name="sensor_disponible">(Available light sensor)</string>
+    <string name="sensor_no_disponible">(Light sensor not available)</string>
+    <string name="luz">Sensor reading: </string>
+    <string name="lm_torch">LUMENS TORCH</string>
+    <string name="luz_automatica">Automatic light</string>
+    <string name="text_color_selector">Select the color for lighting</string>
+    <string name="texto_indicativo">Sensor sensitivity selector</string>
+    <string name="cambiar_flash">Flash</string>
+    <string name="cambiar_pantalla">Screen</string>
+    <string name="sos">SOS morse</string>
+
+    <!-- AdMob strings -->
+    <!-- Release -->
+    <!--<string name="id_app_admob">ca-app-pub-5257404653920985~7692796617</string>-->
+    <!-- Debug/test -->
+    <string name="id_app_admob">ca-app-pub-3940256099942544~3347511713</string>
+
+</resources>
