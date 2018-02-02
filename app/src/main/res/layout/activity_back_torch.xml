@@ -31,60 +31,54 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:context=".BackTorch"/>
-
-    <!--<android.support.constraint.ConstraintLayout-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:orientation="vertical"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintTop_toBottomOf="@+id/title">-->
+        tools:context=".BackTorch" />
 
     <TextView
         android:id="@+id/text_sos"
-        style="@style/text_small"
+        style="@style/text_sos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/large_margin"
+        android:layout_marginTop="@dimen/large_margin"
         android:ellipsize="end"
         android:gravity="center_horizontal"
         android:lines="2"
-        android:layout_marginTop="@dimen/large_margin"
         android:text="@string/sos"
         ads:layout_constraintStart_toStartOf="parent"
         ads:layout_constraintTop_toBottomOf="@+id/title" />
 
     <ImageView
-            android:id="@+id/toggle_front_flash"
-            android:layout_width="@dimen/torch_button_width"
-            android:layout_height="@dimen/torch_button_height"
-            android:layout_marginTop="@dimen/medium_margin"
-            ads:layout_constraintTop_toBottomOf="@id/title"
-            ads:layout_constraintEnd_toEndOf="parent"
-            android:src="@mipmap/cambio_linterna"/>
+        android:id="@+id/toggle_front_flash"
+        android:layout_width="@dimen/torch_button_width"
+        android:layout_height="@dimen/torch_button_height"
+        android:layout_marginTop="@dimen/medium_margin"
+        android:elevation="24dp"
+        android:src="@mipmap/cambio_linterna"
+        ads:layout_constraintEnd_toEndOf="parent"
+        ads:layout_constraintTop_toBottomOf="@id/title" />
 
-        <TextView
-            android:id="@+id/text_toggle_front_flash"
-            style="@style/text_small"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            ads:layout_constraintTop_toBottomOf="@+id/toggle_front_flash"
-            ads:layout_constraintEnd_toEndOf="@+id/toggle_front_flash"
-            android:ellipsize="end"
-            android:text="@string/cambiar_pantalla"/>
-
-    <!--</android.support.constraint.ConstraintLayout>-->
+    <TextView
+        android:id="@+id/text_toggle_front_flash"
+        style="@style/text_small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:gravity="center_horizontal"
+        android:text="@string/cambiar_pantalla"
+        ads:layout_constraintEnd_toEndOf="@+id/toggle_front_flash"
+        ads:layout_constraintTop_toBottomOf="@+id/toggle_front_flash" />
 
     <ImageView
         android:id="@+id/main_button"
         android:layout_width="@dimen/main_button"
         android:layout_height="@dimen/main_button"
         android:layout_weight="1"
+        android:elevation="6dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/button_unbolcked"/>
+        app:srcCompat="@drawable/button_unbolcked" />
 
     <LinearLayout
         android:id="@+id/backLinearLayout"
@@ -110,7 +104,7 @@
                 android:layout_marginEnd="1dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical|left"
-                android:text="@string/luz_automatica"/>
+                android:text="@string/luz_automatica" />
 
             <TextView
                 android:id="@+id/muestrabarra"
@@ -120,7 +114,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="1 "
                 android:gravity="center"
-                tools:text="@string/aplicar"/>
+                tools:text="@string/aplicar" />
 
         </LinearLayout>
 
@@ -133,7 +127,7 @@
             android:layout_marginEnd="@dimen/large_margin"
             android:layout_marginStart="@dimen/large_margin"
             android:gravity="left"
-            android:text="@string/texto_indicativo"/>
+            android:text="@string/texto_indicativo" />
 
         <SeekBar
             android:id="@+id/color_selector"
@@ -143,7 +137,7 @@
             android:layout_margin="@dimen/medium_margin"
             android:progressDrawable="@drawable/progress_seekbar"
             android:splitTrack="false"
-            android:thumb="@mipmap/seek_thumb"/>
+            android:thumb="@mipmap/seek_thumb" />
 
         <LinearLayout
             android:id="@+id/linearLayout2"
@@ -161,7 +155,7 @@
                 android:gravity="center"
                 android:text="@string/sensor_no_disponible"
                 android:visibility="gone"
-                tools:text="@string/sensor_disponible"/>
+                tools:text="@string/sensor_disponible" />
 
             <TextView
                 android:id="@+id/LIGHT_reading"
@@ -169,7 +163,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                tools:text="@string/luz"/>
+                tools:text="@string/luz" />
 
         </LinearLayout>
 
@@ -182,8 +176,8 @@
         android:background="@color/black"
         ads:adSize="BANNER"
         ads:adUnitId="@string/id_banner_back"
-        ads:layout_constraintStart_toStartOf="parent"
         ads:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        ads:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
