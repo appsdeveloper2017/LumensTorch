@@ -2,6 +2,7 @@ package example.org.lumenstorch;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,7 +13,7 @@ import android.widget.TextView;
 
 public class SplashScreen extends AppCompatActivity {
 
-    private TextView textView;
+    //private TextView textView;
     private ImageView imageSplash;
     private Context mContext;
 
@@ -20,8 +21,6 @@ public class SplashScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
-
-        textView = (TextView)findViewById(R.id.titulo_splash);
 
         mContext = this;
 
@@ -32,6 +31,7 @@ public class SplashScreen extends AppCompatActivity {
 
     private void init() {
         imageSplash = (ImageView) findViewById(R.id.imagen_splash);
+        //textView = (TextView)findViewById(R.id.titulo_splash);
     }
 
     private void animateOnCreateViews() {
@@ -60,8 +60,9 @@ public class SplashScreen extends AppCompatActivity {
             @Override
             public void run() {
 
-                Intent intent = new Intent(SplashScreen.this, FrontTorch.class);
+                Intent intent = new Intent(SplashScreen.this, BackTorch.class);
                 startActivity(intent);
+                finish();
 
             }
         }, 1500);
