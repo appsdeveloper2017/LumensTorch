@@ -3,6 +3,7 @@ package example.org.lumenstorch;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -96,7 +97,7 @@ public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarCha
         barraLumens.setOnSeekBarChangeListener(this);
         lightSensor = mySensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
 
-        screen.setBackgroundColor(Color.BLACK);
+        screen.setBackgroundColor(getResources().getColor(R.color.colorPrimary, getTheme()));
     }
 
     private void init() {

@@ -2,9 +2,11 @@
 <resources>
 
     <!-- App colors -->
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#263238</color>
+    <color name="colorPrimaryLight">#607D8B</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#DD2C00</color>
+    <color name="colorAccentLight">#FF3D00</color>
 
     <!-- Color bar selector colors -->
     <color name="white">@android:color/white</color>

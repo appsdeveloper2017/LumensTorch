@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_alignParentTop="false"
-    android:background="@android:color/black"
+    android:background="@color/colorPrimary"
     android:gravity="center"
     android:orientation="vertical"
     android:paddingBottom="@dimen/large_margin"
@@ -33,32 +33,34 @@
         tools:context=".BackTorch" />
 
     <ImageView
-            android:id="@+id/toggle_back_flash"
-            android:layout_width="@dimen/torch_button_width"
-            android:layout_height="@dimen/torch_button_height"
-            android:layout_marginTop="@dimen/medium_margin"
-            android:src="@mipmap/cambio_linterna"
-            ads:layout_constraintEnd_toEndOf="parent"
-            ads:layout_constraintTop_toBottomOf="@id/title" />
+        android:id="@+id/toggle_back_flash"
+        android:layout_width="@dimen/torch_button_width"
+        android:layout_height="@dimen/torch_button_height"
+        android:layout_marginTop="@dimen/medium_margin"
+        android:src="@mipmap/cambio_linterna"
+        ads:layout_constraintEnd_toEndOf="parent"
+        ads:layout_constraintTop_toBottomOf="@id/title" />
 
-        <TextView
-            android:id="@+id/text_toggle_back_flash"
-            style="@style/text_small"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:gravity="center_horizontal"
-            android:lines="2"
-            android:text="@string/cambiar_flash"
-            ads:layout_constraintEnd_toEndOf="@+id/toggle_back_flash"
-            ads:layout_constraintStart_toStartOf="@+id/toggle_back_flash"
-            ads:layout_constraintTop_toBottomOf="@+id/toggle_back_flash" />
+    <TextView
+        android:id="@+id/text_toggle_back_flash"
+        style="@style/text_small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:gravity="center_horizontal"
+        android:lines="2"
+        android:text="@string/cambiar_flash"
+        ads:layout_constraintEnd_toEndOf="@+id/toggle_back_flash"
+        ads:layout_constraintStart_toStartOf="@+id/toggle_back_flash"
+        ads:layout_constraintTop_toBottomOf="@+id/toggle_back_flash" />
 
     <ImageView
         android:id="@+id/main_button"
         android:layout_width="@dimen/main_button"
         android:layout_height="@dimen/main_button"
         android:layout_weight="1"
+        android:elevation="24dp"
+        android:background="@drawable/myrect"
         ads:srcCompat="@drawable/button_unbolcked"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

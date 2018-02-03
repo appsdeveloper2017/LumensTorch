@@ -79,7 +79,7 @@ public class FrontTorch extends AppCompatActivity implements SeekBar.OnSeekBarCh
         Animation anim = AnimationUtils.loadAnimation(this, R.anim.set_torch_mirror);
         imgCambioLinterna.startAnimation(anim); // Pone la imagen de la linterna invertida para dar la sensación
         textColorSelector.setText(getResources().getString(R.string.text_color_selector));
-        screen.setBackgroundColor(Color.BLACK);
+        screen.setBackgroundColor(getResources().getColor(R.color.colorPrimary, getTheme()));
         drawItemsWhite();
     }
 
@@ -243,25 +243,25 @@ public class FrontTorch extends AppCompatActivity implements SeekBar.OnSeekBarCh
 
         switch (seekbarValue) {
             case 0:
-                screen.setBackgroundColor(getResources().getColor(R.color.red));
+                screen.setBackgroundColor(getResources().getColor(R.color.red, getTheme()));
                 break;
             case 1:
-                screen.setBackgroundColor(getResources().getColor(R.color.magenta));
+                screen.setBackgroundColor(getResources().getColor(R.color.magenta, getTheme()));
                 break;
             case 2:
-                screen.setBackgroundColor(getResources().getColor(R.color.blue));
+                screen.setBackgroundColor(getResources().getColor(R.color.blue, getTheme()));
                 break;
             case 3:
-                screen.setBackgroundColor(getResources().getColor(R.color.green));
+                screen.setBackgroundColor(getResources().getColor(R.color.green, getTheme()));
                 break;
             case 4:
-                screen.setBackgroundColor(getResources().getColor(R.color.yellow));
+                screen.setBackgroundColor(getResources().getColor(R.color.yellow, getTheme()));
                 break;
             case 5:
-                screen.setBackgroundColor(getResources().getColor(R.color.white));
+                screen.setBackgroundColor(getResources().getColor(R.color.white, getTheme()));
                 break;
             default:
-                screen.setBackgroundColor(getResources().getColor(R.color.black));
+                screen.setBackgroundColor(getResources().getColor(R.color.colorPrimary, getTheme()));
                 break;
         }
         drawItemsBlack();
@@ -272,8 +272,8 @@ public class FrontTorch extends AppCompatActivity implements SeekBar.OnSeekBarCh
         botonOnOff.setImageDrawable(getResources().getDrawable(R.drawable.button_unbolcked));
         imgCambioLinterna.setImageDrawable(getResources().getDrawable(R.mipmap.cambio_linterna));
         textColorSelector.setTextColor(Color.WHITE);
-        linearColorBar.setBackgroundColor(getResources().getColor(R.color.grey));
-        textoCambioLinterna.setTextColor(getResources().getColor(R.color.blue));
+        linearColorBar.setBackgroundColor(getResources().getColor(R.color.grey, getTheme()));
+        textoCambioLinterna.setTextColor(getResources().getColor(R.color.blue, getTheme()));
     }
 
     private void drawItemsBlack() {
@@ -281,8 +281,8 @@ public class FrontTorch extends AppCompatActivity implements SeekBar.OnSeekBarCh
         botonOnOff.setImageDrawable(getResources().getDrawable(R.drawable.button_black));
         imgCambioLinterna.setImageDrawable(getResources().getDrawable(R.mipmap.cambio_linterna_black));
         textColorSelector.setTextColor(Color.BLACK);
-        linearColorBar.setBackgroundColor(getResources().getColor(R.color.black));
-        textoCambioLinterna.setTextColor(getResources().getColor(R.color.black));
+        textoCambioLinterna.setTextColor(getResources().getColor(R.color.black, getTheme()));
+        linearColorBar.setBackgroundColor(getResources().getColor(R.color.black, getTheme()));
     }
 
     public void toggleOnOffScreen(boolean activated) {
@@ -290,7 +290,7 @@ public class FrontTorch extends AppCompatActivity implements SeekBar.OnSeekBarCh
             takeScreenColorFromColorSelector();
             showColorBarItems();
         } else {
-            screen.setBackgroundColor(Color.BLACK);
+            screen.setBackgroundColor(getResources().getColor(R.color.colorPrimary, getTheme()));
             drawItemsWhite();
             hideColorBarItems();
         }
