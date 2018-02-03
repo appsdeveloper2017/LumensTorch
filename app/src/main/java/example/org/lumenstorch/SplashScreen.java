@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 public class SplashScreen extends AppCompatActivity {
 
-    //private TextView textView;
+    private TextView textView;
     private ImageView imageSplash;
     private Context mContext;
 
@@ -31,7 +31,7 @@ public class SplashScreen extends AppCompatActivity {
 
     private void init() {
         imageSplash = (ImageView) findViewById(R.id.imagen_splash);
-        //textView = (TextView)findViewById(R.id.titulo_splash);
+        textView = (TextView)findViewById(R.id.titulo_splash);
     }
 
     private void animateOnCreateViews() {
