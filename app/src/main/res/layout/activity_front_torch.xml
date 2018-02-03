@@ -60,7 +60,6 @@
         android:layout_height="@dimen/main_button"
         android:layout_weight="1"
         android:elevation="24dp"
-        android:background="@drawable/myrect"
         ads:srcCompat="@drawable/button_unbolcked"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
