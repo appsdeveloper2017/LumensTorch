@@ -2,7 +2,7 @@
 <resources>
 
     <!--Splash Screen-->
-    <color name="degrade_up">#bdc3c7</color>
+    <color name="degrade_up">#66727b</color>
     <color name="degrade_down">#2c3e50</color>
 
     <!-- App colors -->

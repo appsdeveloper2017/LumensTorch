@@ -79,7 +79,8 @@ public class FrontTorch extends AppCompatActivity implements SeekBar.OnSeekBarCh
         Animation anim = AnimationUtils.loadAnimation(this, R.anim.set_torch_mirror);
         imgCambioLinterna.startAnimation(anim); // Pone la imagen de la linterna invertida para dar la sensación
         textColorSelector.setText(getResources().getString(R.string.text_color_selector));
-        screen.setBackgroundColor(getResources().getColor(R.color.colorPrimary, getTheme()));
+        screen.setBackground(null);
+        screen.setBackground(getResources().getDrawable(R.drawable.degradado_bacground, getTheme()));
         drawItemsWhite();
     }
 
@@ -246,22 +247,28 @@ public class FrontTorch extends AppCompatActivity implements SeekBar.OnSeekBarCh
                 screen.setBackgroundColor(getResources().getColor(R.color.red, getTheme()));
                 break;
             case 1:
+                screen.setBackground(null);
                 screen.setBackgroundColor(getResources().getColor(R.color.magenta, getTheme()));
                 break;
             case 2:
+                screen.setBackground(null);
                 screen.setBackgroundColor(getResources().getColor(R.color.blue, getTheme()));
                 break;
             case 3:
+                screen.setBackground(null);
                 screen.setBackgroundColor(getResources().getColor(R.color.green, getTheme()));
                 break;
             case 4:
+                screen.setBackground(null);
                 screen.setBackgroundColor(getResources().getColor(R.color.yellow, getTheme()));
                 break;
             case 5:
+                screen.setBackground(null);
                 screen.setBackgroundColor(getResources().getColor(R.color.white, getTheme()));
                 break;
             default:
-                screen.setBackgroundColor(getResources().getColor(R.color.colorPrimary, getTheme()));
+                screen.setBackground(null);
+                screen.setBackground(getResources().getDrawable(R.drawable.degradado_bacground, getTheme()));
                 break;
         }
         drawItemsBlack();
@@ -282,7 +289,6 @@ public class FrontTorch extends AppCompatActivity implements SeekBar.OnSeekBarCh
         imgCambioLinterna.setImageDrawable(getResources().getDrawable(R.mipmap.cambio_linterna_black));
         textColorSelector.setTextColor(Color.BLACK);
         textoCambioLinterna.setTextColor(getResources().getColor(R.color.black, getTheme()));
-        linearColorBar.setBackgroundColor(getResources().getColor(R.color.black, getTheme()));
     }
 
     public void toggleOnOffScreen(boolean activated) {
@@ -290,7 +296,8 @@ public class FrontTorch extends AppCompatActivity implements SeekBar.OnSeekBarCh
             takeScreenColorFromColorSelector();
             showColorBarItems();
         } else {
-            screen.setBackgroundColor(getResources().getColor(R.color.colorPrimary, getTheme()));
+            screen.setBackground(null);
+            screen.setBackground(getResources().getDrawable(R.drawable.degradado_bacground, getTheme()));
             drawItemsWhite();
             hideColorBarItems();
         }

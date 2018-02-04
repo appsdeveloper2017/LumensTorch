@@ -2,7 +2,7 @@
 
     <!--Splash screen dimensions-->
     <dimen name="img_splash">150dp</dimen>
-    <dimen name="titulo_splash">60sp</dimen>
+    <dimen name="titulo_splash">40sp</dimen>
 
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="small_margin">4dp</dimen>

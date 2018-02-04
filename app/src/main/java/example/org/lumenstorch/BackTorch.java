@@ -3,8 +3,6 @@ package example.org.lumenstorch;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
-import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -35,7 +33,10 @@ public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarCha
 
     public static final String LUMENS = "lumens";
     public static final String ID_APP_ADMOB = "ca-app-pub-3940256099942544~3347511713"; // Debug
-//    public static final String ID_APP_ADMOB = "ca-app-pub-5257404653920985~7692796617"; // Reslease
+    public static final int FLASH_PAUSE = 50;
+    public static final int FLASH_ON_LARGE = 500;
+    public static final int FLASH_ON_SHORT = 75;
+    //    public static final String ID_APP_ADMOB = "ca-app-pub-5257404653920985~7692796617"; // Reslease
     private AdView mAdView;
     public final String VALOR_ACTUAL = "valorActual";
     public final String VALOR_CHECK_BOX = "valorCheckBox";
@@ -97,7 +98,7 @@ public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarCha
         barraLumens.setOnSeekBarChangeListener(this);
         lightSensor = mySensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
 
-        screen.setBackgroundColor(getResources().getColor(R.color.colorPrimary, getTheme()));
+        screen.setBackground(getResources().getDrawable(R.drawable.degradado_bacground, getTheme()));
     }
 
     private void init() {
@@ -183,61 +184,92 @@ public class BackTorch extends AppCompatActivity implements SeekBar.OnSeekBarCha
                 animFrontTorchButton(view);
                 break;
             case R.id.text_sos:
-                sendSOS();
+                animateSOS(view);
                 break;
             default:
                 break;
         }
     }
 
-    private void sendSOS() {
+    private void sendSOS(View view) {
         try {
+            toggleOnOffFlash(false);
             // S
-            toggleOnOffFlash(true);
-            Thread.sleep(100);
-            toggleOnOffFlash(false);
-            Thread.sleep(100);
-            toggleOnOffFlash(true);
-            Thread.sleep(100);
-            toggleOnOffFlash(false);
-            Thread.sleep(100);
-            toggleOnOffFlash(true);
-            Thread.sleep(100);
-            toggleOnOffFlash(false);
-            Thread.sleep(100);
-
+            morseS();
             // O
-            toggleOnOffFlash(true);
-            Thread.sleep(1000);
-            toggleOnOffFlash(false);
-            Thread.sleep(100);
-            toggleOnOffFlash(true);
-            toggleOnOffFlash(true);
-            Thread.sleep(1000);
-            toggleOnOffFlash(false);
-            Thread.sleep(100);
-            toggleOnOffFlash(true);
-            toggleOnOffFlash(true);
-            Thread.sleep(1000);
-            toggleOnOffFlash(false);
-            Thread.sleep(100);
-            toggleOnOffFlash(true);
-
+            morseO();
             // S
-            toggleOnOffFlash(true);
-            Thread.sleep(100);
-            toggleOnOffFlash(false);
-            Thread.sleep(100);
-            toggleOnOffFlash(true);
-            Thread.sleep(100);
-            toggleOnOffFlash(false);
-            Thread.sleep(100);
-            toggleOnOffFlash(true);
-            Thread.sleep(100);
-            toggleOnOffFlash(false);
-            Thread.sleep(100);
+            morseS();
         } catch (InterruptedException e) {
             e.printStackTrace();
+        }
+        clearAnimation(view);
+    }
+
+    private void animateSOS(final View view) {
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.animation_sos_text_on);
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                sendSOS(view);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+        botonOnOff.setVisibility(View.INVISIBLE);
+        checkBox.setVisibility(View.INVISIBLE);
+        textoCambioLinterna.setVisibility(View.INVISIBLE);
+        imgLinternaFrontal.setVisibility(View.INVISIBLE);
+        view.startAnimation(animation);
+    }
+
+    private void clearAnimation(View view) {
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.animation_sos_text_off);
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                botonOnOff.setVisibility(View.VISIBLE);
+                checkBox.setVisibility(View.VISIBLE);
+                textoCambioLinterna.setVisibility(View.VISIBLE);
+                imgLinternaFrontal.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+        view.startAnimation(animation);
+    }
+
+    private void morseS() throws InterruptedException {
+        for(int i = 0; i<3; i++) {
+            toggleOnOffFlash(true);
+            Thread.sleep(FLASH_ON_SHORT);
+            toggleOnOffFlash(false);
+            Thread.sleep(FLASH_PAUSE);
+        }
+    }
+
+    private void morseO() throws InterruptedException {
+        for (int i = 0; i<3; i++) {
+            toggleOnOffFlash(true);
+            Thread.sleep(FLASH_ON_LARGE);
+            toggleOnOffFlash(false);
+            Thread.sleep(100);
         }
     }
 

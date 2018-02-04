@@ -11,6 +11,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.lang.reflect.Type;
+
 
 public class SplashScreen extends AppCompatActivity {
 
@@ -29,6 +31,8 @@ public class SplashScreen extends AppCompatActivity {
         init();
         animateOnCreateViews();
 
+//        Typeface tf = Typeface.createFromAsset(getAssets(), "fonts/font.ttf");
+//        textView.setTypeface(tf);
     }
 
     private void init() {
@@ -67,7 +71,7 @@ public class SplashScreen extends AppCompatActivity {
                 finish();
 
             }
-        }, 1500);
+        }, 1000);
 
     }
 }

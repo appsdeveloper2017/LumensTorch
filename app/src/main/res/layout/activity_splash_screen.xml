@@ -5,17 +5,16 @@
     android:id="@+id/constrait_degradado"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/degradado"
+    android:background="@drawable/degradado_bacground"
     tools:context="example.org.lumenstorch.SplashScreen">
 
     <TextView
         android:id="@+id/titulo_splash"
+        style="@style/splash_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="90dp"
-        android:fontFamily="@font/font"
         android:text="@string/app_name"
-        android:textSize="@dimen/titulo_splash"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -29,4 +28,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/lumenstorch" />
+    
 </android.support.constraint.ConstraintLayout>
